@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class menu : MonoBehaviour
 {
-   
+
     public void toAchievement()
     {
         SceneManager.LoadScene("Achievement");

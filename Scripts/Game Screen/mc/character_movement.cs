@@ -16,6 +16,7 @@ public class character_movement : MonoBehaviour
     {
         character = GetComponent<Rigidbody2D>();
         character_animation = GetComponent<Animator>();
+        Time.timeScale = 1.0f;
     }
 
     public void FixedUpdate()
