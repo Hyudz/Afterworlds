@@ -27,7 +27,7 @@ public class character_movement : MonoBehaviour
         character.MovePosition(character.position + movement * movement_Speed * Time.deltaTime);
         horizontal_movement = movement.x;
         character.velocity = new Vector2 (horizontal_movement * movement_Speed, character.velocity.y);
-        //character_animation.SetBool("walking", Joystick.Horizontal != 0);
+        character_animation.SetBool("run", Joystick.Horizontal != 0);
 
         // Move right
         if (horizontal_movement > 0.01f)

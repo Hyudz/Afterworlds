@@ -19,12 +19,12 @@ public class enemy1_health : MonoBehaviour
         currentHealth -= dmg;
         //enemy1_animation.SetTrigger("hurt");
 
-        if(currentHealth <=0) {
+        if(currentHealth <0) {
             Die();
         }
     }
 
-    void Die()
+    public void Die()
     {
         Debug.Log("Enemy dies");
         enemy1_animation.SetTrigger("die");

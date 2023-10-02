@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 991382296034031025}
   - component: {fileID: 1245361653551157667}
   - component: {fileID: 1086398455831129011}
-  m_Layer: 0
+  - component: {fileID: 3944461994322670427}
+  m_Layer: 8
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,9 +29,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4590946117947537662}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1491.701, y: 1094, z: 6.494171}
-  m_LocalScale: {x: 200, y: 200, z: 200}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1532.3384, y: 1113.8, z: 6.494171}
+  m_LocalScale: {x: -44.86889, y: 42.1, z: 200}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -81,7 +82,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.32, y: 0.32}
+  m_Size: {x: 5.12, y: 2.56}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -140,18 +141,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.005298838, y: -0.044432327}
+  m_Offset: {x: 0.053374365, y: -0.56898516}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 5.12, y: 2.56}
-    newSize: {x: 0.32, y: 0.32}
+    newSize: {x: 5.12, y: 2.56}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.21554384, y: 0.23113534}
+  m_Size: {x: 0.63218045, y: 1.2802411}
   m_EdgeRadius: 0
 --- !u!114 &1086398455831129011
 MonoBehaviour:
@@ -165,5 +166,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c44a4813dbc7de249ab858a1dfe786d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movement_speed: 0
+  movement_speed: 10
   enemy_animation: {fileID: 0}
+--- !u!114 &3944461994322670427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4590946117947537662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d499f8c69d1a9943ba5016cb1c6e6de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackCooldown: 3
+  range: 6.98
+  damage: 1
+  colliderDistance: 0.39
+  boxCollider: {fileID: 1245361653551157667}
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 8

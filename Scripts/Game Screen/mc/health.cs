@@ -7,6 +7,8 @@ public class health : MonoBehaviour
     [SerializeField] public int maxHealth;
     public int currentHealth;
     public healthbar healthBar;
+    private Animator character_animation;
+    public Canvas gameOverScreen;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +18,8 @@ public class health : MonoBehaviour
         */
         currentHealth = maxHealth;
         healthBar.SetmaxHealth(maxHealth);
+        character_animation = GetComponent<Animator>();
+        gameOverScreen.enabled = false;
     }
 
     // Update is called once per frame
@@ -24,14 +28,18 @@ public class health : MonoBehaviour
         
     }
 
-    void TakeDmg(int dmg)
+    public void TakeDmg(int dmg)
     {
         currentHealth -= dmg;
         healthBar.SetHealth(currentHealth);
+        character_animation.SetTrigger("hurt");
 
         if(currentHealth == 0)
         {
-            Debug.Log("Game over");
+            //character_animation.SetBool("die", true);
+            this.enabled = false;
+            gameOverScreen.enabled = true;
+            Time.timeScale = 0;
         }
     }
 }

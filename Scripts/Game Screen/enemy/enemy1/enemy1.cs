@@ -18,7 +18,10 @@ public class enemy1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //transform.position = Vector2.MoveTowards(transform.position, player.transform.position, movement_speed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, movement_speed * Time.deltaTime);
         //enemy_animation.SetBool("walk", true);
+
+
+        //Debug.Log(transform.position);
     }
 }

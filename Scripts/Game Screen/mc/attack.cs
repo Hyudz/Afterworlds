@@ -14,18 +14,20 @@ public class attack : MonoBehaviour
     public float attackRange = 0.5f;
     public LayerMask enemyLayers;
     public int character_dmg = 2;
+    private health character_health;
 
     // Start is called before the first frame update
     void Awake()
     {
         anim = GetComponent<Animator>();
+        character_health = GetComponent<health>();
     }
 
     // Update is called once per frame
     void Update()
     {
         cdTimer += Time.deltaTime;
-        if (cdTimer > atkCd)
+        if (cdTimer > atkCd && character_health.currentHealth > 0)
         {
             Attack();
         }
@@ -33,7 +35,7 @@ public class attack : MonoBehaviour
 
     private void Attack()
     {
-        anim.SetTrigger("attack_melee");
+        //anim.SetTrigger("attack_melee");
         cdTimer = 0;
 
         /*Arguments: 
