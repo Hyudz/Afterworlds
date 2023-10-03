@@ -6,6 +6,7 @@ public class enemy1 : MonoBehaviour
 {
 
     Transform player;
+    public GameObject enemy;
     public float movement_speed;
     public Animator enemy_animation;
     // Start is called before the first frame update
@@ -23,5 +24,10 @@ public class enemy1 : MonoBehaviour
 
 
         //Debug.Log(transform.position);
+    }
+
+    public void OnDestroy()
+    {
+        Destroy(enemy);
     }
 }

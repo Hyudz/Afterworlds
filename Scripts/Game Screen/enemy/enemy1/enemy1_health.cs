@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class enemy1_health : MonoBehaviour
 {
-    int maxHealth = 10;
+    [SerializeField] int maxHealth;
     int currentHealth;
-    public Animator enemy1_animation;
+    private enemy1 enemy;
 
     private void Start()
     {
         currentHealth = maxHealth;
-        enemy1_animation = GetComponent<Animator>();
+        enemy = GetComponent<enemy1>();
+        //enemy1_animation = GetComponent<Animator>();
     }
 
     public void TakeDmg(int dmg)
@@ -19,16 +20,18 @@ public class enemy1_health : MonoBehaviour
         currentHealth -= dmg;
         //enemy1_animation.SetTrigger("hurt");
 
-        if(currentHealth <0) {
+        if(currentHealth <=0) {
             Die();
         }
     }
 
     public void Die()
     {
-        Debug.Log("Enemy dies");
-        enemy1_animation.SetTrigger("die");
+        Destroy(this.gameObject);
+        Debug.Log("Enemy " + this.name +" dies");
+        //enemy1_animation.SetTrigger("die");
         GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
+        //DestroyImmediate(gameObject, true);
     }
 }
