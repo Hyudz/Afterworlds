@@ -34,7 +34,7 @@ public class health : MonoBehaviour
         healthBar.SetHealth(currentHealth);
         character_animation.SetTrigger("hurt");
 
-        if(currentHealth == 0)
+        if(currentHealth <= 0)
         {
             //character_animation.SetBool("die", true);
             this.enabled = false;

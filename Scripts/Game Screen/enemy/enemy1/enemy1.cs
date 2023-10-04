@@ -12,6 +12,8 @@ public class enemy1 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        //grab references
         player = FindAnyObjectByType<character_movement>().transform;
         enemy_animation = GetComponent<Animator>();
     }
@@ -19,15 +21,11 @@ public class enemy1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        //eto yung sa movement ng enemies
         transform.position = Vector2.MoveTowards(transform.position, player.transform.position, movement_speed * Time.deltaTime);
         //enemy_animation.SetBool("walk", true);
 
-
-        //Debug.Log(transform.position);
     }
 
-    public void OnDestroy()
-    {
-        Destroy(enemy);
-    }
 }

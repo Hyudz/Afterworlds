@@ -7,18 +7,19 @@ public class enemy1_health : MonoBehaviour
     [SerializeField] int maxHealth;
     int currentHealth;
     private enemy1 enemy;
+    private Animator enemy1_animation;
 
     private void Start()
     {
         currentHealth = maxHealth;
         enemy = GetComponent<enemy1>();
-        //enemy1_animation = GetComponent<Animator>();
+        enemy1_animation = GetComponent<Animator>();
     }
 
     public void TakeDmg(int dmg)
     {
         currentHealth -= dmg;
-        //enemy1_animation.SetTrigger("hurt");
+        enemy1_animation.SetTrigger("hurt");
 
         if(currentHealth <=0) {
             Die();
