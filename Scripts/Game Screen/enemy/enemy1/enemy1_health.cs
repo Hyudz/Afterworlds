@@ -5,17 +5,19 @@ using UnityEngine;
 public class enemy1_health : MonoBehaviour
 {
     [SerializeField] int maxHealth;
-    int currentHealth;
-    private enemy1 enemy;
+    public int currentHealth;
     private Animator enemy1_animation;
+    [SerializeField] public int addedExp;
 
     private void Start()
     {
+        //Set the current health to max health at the start
         currentHealth = maxHealth;
-        enemy = GetComponent<enemy1>();
+        Debug.Log("Start: " + currentHealth);
         enemy1_animation = GetComponent<Animator>();
     }
 
+    //the one who calls this method is at the attack class to tell the program that the enemy takes a damage
     public void TakeDmg(int dmg)
     {
         currentHealth -= dmg;
@@ -29,10 +31,9 @@ public class enemy1_health : MonoBehaviour
     public void Die()
     {
         Destroy(this.gameObject);
-        Debug.Log("Enemy " + this.name +" dies");
-        //enemy1_animation.SetTrigger("die");
         GetComponent<Collider2D>().enabled = false;
+        experience_manager.Instance.AddExperience(2);
+
         this.enabled = false;
-        //DestroyImmediate(gameObject, true);
     }
 }

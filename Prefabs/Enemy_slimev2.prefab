@@ -169,6 +169,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 7
+  character_exp: {fileID: 0}
+  addedExp: 5
 --- !u!114 &170609745119236300
 MonoBehaviour:
   m_ObjectHideFlags: 0

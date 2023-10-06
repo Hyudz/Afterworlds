@@ -8,7 +8,7 @@ public class enemy1_atk : MonoBehaviour
     //[SerializeField] private float range;
     [SerializeField] private int damage;
     //[SerializeField] private float colliderDistance;
-    private float cooldownTimer = 0.0f;
+    private float cooldownTimer = Mathf.Infinity;
     //[SerializeField] private BoxCollider2D boxCollider;
     [SerializeField] private LayerMask playerLayer;
     public float attackRange;
@@ -42,12 +42,11 @@ public class enemy1_atk : MonoBehaviour
 
         foreach (Collider2D character in hitCharacter)
         {
-            Debug.Log("hit: " + character.name);
             if (cooldownTimer >= attackCooldown) {
-             if (character.CompareTag("Character"))
-            {
+                if (character.CompareTag("Character"))
+                {
                    cooldownTimer = 0.0f;
-                    character.GetComponent<health>().TakeDmg(damage);
+                   character.GetComponent<health>().TakeDmg(damage);
                 }
             }
 

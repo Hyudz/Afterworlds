@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class health : MonoBehaviour
 {
-    [SerializeField] public int maxHealth;
-    public int currentHealth;
+    public int maxHealth = 20;
+    public int currentHealth = 20;
     public healthbar healthBar;
     private Animator character_animation;
     public Canvas gameOverScreen;
+    public expBar expbar;
+    public int currentExperience = 0;
+    public int maxExperience = 100;
+    public int currentLevel = 1;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,12 +24,6 @@ public class health : MonoBehaviour
         healthBar.SetmaxHealth(maxHealth);
         character_animation = GetComponent<Animator>();
         gameOverScreen.enabled = false;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void TakeDmg(int dmg)
@@ -41,5 +39,33 @@ public class health : MonoBehaviour
             gameOverScreen.enabled = true;
             Time.timeScale = 0;
         }
+    }
+
+    private void OnEnable()
+    {
+        experience_manager.Instance.OnExperienceChange += HandleExperienceChange;
+    }
+
+    private void OnDisable()
+    {
+        experience_manager.Instance.OnExperienceChange -= HandleExperienceChange;
+    }
+
+    private void HandleExperienceChange(int newExperience)
+    {
+        currentExperience += newExperience;
+        expbar.SetExp(currentExperience);
+        if(currentExperience >= maxExperience)
+        {
+            LevelUp();
+        }
+    }
+
+    void LevelUp()
+    {
+        maxHealth += 10;
+        currentHealth = maxHealth;
+        currentExperience = 0;
+        maxExperience += 50;
     }
 }

@@ -200,6 +200,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 10
+  character_exp: {fileID: 0}
+  addedExp: 7
 --- !u!114 &1489602116564691694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,10 +230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackCooldown: 1
-  range: -1.53
   damage: 3
-  colliderDistance: 0.44
-  boxCollider: {fileID: 6218940030925643125}
   playerLayer:
     serializedVersion: 2
     m_Bits: 8

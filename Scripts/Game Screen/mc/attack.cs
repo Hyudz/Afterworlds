@@ -14,7 +14,6 @@ public class attack : MonoBehaviour
     public LayerMask enemyLayers;
     public int character_dmg = 2;
     private health character_health;
-    [SerializeField] private GameObject fireBalls;
 
     //[Header("Targetable Enemy")]
 
@@ -54,11 +53,9 @@ public class attack : MonoBehaviour
 
         foreach (Collider2D enemy in hitEnemies)
         {
-            Debug.Log("hit: " + enemy.name);
 ;            if (enemy.CompareTag("Enemy"))
             {
                 enemy.GetComponent<enemy1_health>().TakeDmg(character_dmg);
-                Debug.Log("You just hit " + enemy.name);
             } 
 
         }
