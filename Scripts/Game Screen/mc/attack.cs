@@ -14,6 +14,7 @@ public class attack : MonoBehaviour
     public LayerMask enemyLayers;
     public int character_dmg = 2;
     private health character_health;
+    public GameObject fireBalls;
 
     //[Header("Targetable Enemy")]
 
@@ -48,8 +49,8 @@ public class attack : MonoBehaviour
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
 
         //RANGED ATK
-        //fireBalls.transform.position = attackPoint.position;
-        //fireBalls.GetComponent<balls>().SetDirection(Mathf.Sign(transform.localScale.x));
+        fireBalls.transform.position = attackPoint.position;
+        fireBalls.GetComponent<balls>().SetDirection(Mathf.Sign(transform.localScale.x));
 
         foreach (Collider2D enemy in hitEnemies)
         {
@@ -57,11 +58,10 @@ public class attack : MonoBehaviour
             {
                 enemy.GetComponent<enemy1_health>().TakeDmg(character_dmg);
             } 
-
         }
     }
 
-    private void OnDrawGizmosSelected()
+        private void OnDrawGizmosSelected()
     {
         if (attackPoint == null)
             return;

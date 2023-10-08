@@ -6,14 +6,14 @@ public class balls : MonoBehaviour
 {
     [SerializeField] private float speed;
     private bool hit;
-    private CircleCollider2D collider;
+    private BoxCollider2D collider;
     private float direction;
-    private Animator projectile;
+    //private Animator projectile;
 
     private void Awake()
     {
-        collider = GetComponent<CircleCollider2D>();
-        projectile = GetComponent<Animator>();
+        collider = GetComponent<BoxCollider2D>();
+        //projectile = GetComponent<Animator>();
     }
 
     private void Update()
@@ -29,7 +29,16 @@ public class balls : MonoBehaviour
     {
         hit = true;
         collider.enabled = false;
-        projectile.SetTrigger("hit");
+        Debug.Log("hit" + collision.name);
+
+        if (collision.CompareTag("Enemy"))
+        {
+            collision.GetComponent<enemy1_health>().TakeDmg(2);
+        } else
+        {
+            //DO NOTHING
+        }
+        //projectile.SetTrigger("explode");
     }
 
     public void SetDirection(float _direction)
@@ -39,11 +48,16 @@ public class balls : MonoBehaviour
         hit = false;
         collider.enabled = true;
 
-        float localScaleX = transform.localScale.x;
+        /*  float localScaleX = transform.localScale.x;
         if (Mathf.Sign(localScaleX) != _direction)
             localScaleX = -localScaleX;
 
         transform.localScale = new Vector3(localScaleX, transform.localScale.y, transform.localScale.z);
+        */
+
+        float newDirection = Mathf.Abs(transform.localScale.x) * _direction;
+
+        transform.localScale = new Vector3(newDirection, transform.localScale.y, transform.localScale.z);
     }
 
     public void Deactivate()

@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class healthbar : MonoBehaviour
 {
     public Slider slider;
     public Gradient gradient;
     public Image fill;
+    public TextMeshProUGUI healthIndicator;
 
     private void Update()
     {
@@ -25,5 +27,6 @@ public class healthbar : MonoBehaviour
     public void SetHealth(int health)
     {
         slider.value = health;
+        healthIndicator.SetText(health.ToString() + "/" + slider.maxValue.ToString());
     }
 }
