@@ -7,8 +7,12 @@ public class health : MonoBehaviour
     public int maxHealth = 20;
     public int currentHealth = 20;
     public healthbar healthBar;
+
     private Animator character_animation;
+
     public Canvas gameOverScreen;
+    public gameOverScreen gameOver;
+
     public expBar expbar;
     public int currentExperience = 0;
     public int maxExperience = 100;
@@ -37,6 +41,8 @@ public class health : MonoBehaviour
             //character_animation.SetBool("die", true);
             this.enabled = false;
             gameOverScreen.enabled = true;
+            gameOver.gameIsOver = true;
+            gameOver.Hide();
             Time.timeScale = 0;
         }
     }
@@ -67,5 +73,13 @@ public class health : MonoBehaviour
         currentHealth = maxHealth;
         currentExperience = 0;
         maxExperience += 50;
+        currentLevel += 1;
+
+        healthBar.SetHealth(maxHealth);
+        healthBar.SetmaxHealth(maxHealth);
+        expbar.SetExp(currentExperience);
+        expbar.SetmaxExp(maxExperience);
+
+
     }
 }

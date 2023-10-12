@@ -11,9 +11,10 @@ public class expBar : MonoBehaviour
     public Image fill;
     public TextMeshProUGUI expIndicator;
 
-    public void SetmaxExp()
-    { 
-        slider.maxValue = 100;
+    public void SetmaxExp(int exp)
+    {
+        expIndicator.SetText(slider.value + "/" + exp.ToString());
+        slider.maxValue = exp;
     }
 
     //this method updates the value of health slider
@@ -22,4 +23,5 @@ public class expBar : MonoBehaviour
         slider.value = exp;
         expIndicator.SetText(exp.ToString() + "/" + slider.maxValue.ToString());
     }
+
 }

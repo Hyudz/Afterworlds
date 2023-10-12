@@ -13,12 +13,13 @@ public class healthbar : MonoBehaviour
 
     private void Update()
     {
-        fill.color = gradient.Evaluate(1f);
+        //fill.color = gradient.Evaluate(1f);
         fill.color = gradient.Evaluate(slider.normalizedValue);
     }
 
     public void SetmaxHealth(int health)
     {
+        healthIndicator.SetText(health.ToString() + "/" + health.ToString());
         slider.maxValue = health;
         slider.value = health;
     }

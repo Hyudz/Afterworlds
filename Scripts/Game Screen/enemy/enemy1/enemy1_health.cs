@@ -13,7 +13,6 @@ public class enemy1_health : MonoBehaviour
     {
         //Set the current health to max health at the start
         currentHealth = maxHealth;
-        Debug.Log("Start: " + currentHealth);
         enemy1_animation = GetComponent<Animator>();
     }
 
@@ -30,9 +29,11 @@ public class enemy1_health : MonoBehaviour
 
     public void Die()
     {
+        enemy1_animation.SetBool("isAlive", false);
+        new WaitForSeconds(2);
         Destroy(this.gameObject);
         GetComponent<Collider2D>().enabled = false;
-        experience_manager.Instance.AddExperience(2);
+        experience_manager.Instance.AddExperience(addedExp);
 
         this.enabled = false;
     }

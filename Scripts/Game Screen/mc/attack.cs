@@ -15,6 +15,7 @@ public class attack : MonoBehaviour
     public int character_dmg = 2;
     private health character_health;
     public GameObject fireBalls;
+    private int attackLimit;
 
     //[Header("Targetable Enemy")]
 
@@ -33,6 +34,7 @@ public class attack : MonoBehaviour
         if (cdTimer > atkCd && character_health.currentHealth > 0)
         {
             Attack();
+            attackLimit = 0;
         }
     }
 
@@ -54,10 +56,16 @@ public class attack : MonoBehaviour
 
         foreach (Collider2D enemy in hitEnemies)
         {
-;            if (enemy.CompareTag("Enemy"))
+            if (attackLimit <= 5)
             {
-                enemy.GetComponent<enemy1_health>().TakeDmg(character_dmg);
-            } 
+                if (enemy.CompareTag("Enemy"))
+                {
+                    enemy.GetComponent<enemy1_health>().TakeDmg(character_dmg);
+                    attackLimit += 1;
+                    Debug.Log("Attacked enemy:" + attackLimit);
+                }
+            }
+
         }
     }
 

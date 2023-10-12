@@ -8,10 +8,11 @@ public class gameOverScreen : MonoBehaviour
 {
     public Canvas character_ui;
     public Canvas game_ui;
+    public bool gameIsOver = false;
     //public Button pauseButton;
     public void Start()
     {
-
+        gameIsOver = false;
     }
 
     public void Hide()

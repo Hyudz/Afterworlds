@@ -27,9 +27,16 @@ public class balls : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
+        if (collision.CompareTag("MainCamera"))
+        {
+            // Do nothing when hitting camera bounds
+            return;
+        }
+
         hit = true;
+        Debug.Log("hit:" + collision.name);
         collider.enabled = false;
-        Debug.Log("hit" + collision.name);
 
         if (collision.CompareTag("Enemy"))
         {

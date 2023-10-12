@@ -19,11 +19,11 @@ public class spawnEnemy_slimev2 : MonoBehaviour
 
     private IEnumerator SpawnEnemy(float interval, GameObject enemyPrefab)
     {
+        new WaitForSeconds(3);
         while (true)
         {
             yield return new WaitForSeconds(interval);
             GameObject newEnemy = Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
-            // You can add additional setup for the new enemy here if needed.
         }
     }
 }
