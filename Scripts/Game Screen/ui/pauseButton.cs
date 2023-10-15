@@ -20,6 +20,7 @@ public class pauseButton : MonoBehaviour
     public void pauseGame()
     {
         Time.timeScale = 0;
+        Debug.Log("Game paused");
         //pause_panel.SetActive(false);
     }
 }

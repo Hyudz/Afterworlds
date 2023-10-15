@@ -8,7 +8,9 @@ public class gameOverScreen : MonoBehaviour
 {
     public Canvas character_ui;
     public Canvas game_ui;
+    public Canvas timer_ui;
     public bool gameIsOver = false;
+    public GameObject[] spawners;
     //public Button pauseButton;
     public void Start()
     {
@@ -19,6 +21,12 @@ public class gameOverScreen : MonoBehaviour
     {
         character_ui.enabled = false;
         game_ui.enabled = false;
+        timer_ui.enabled = false;
+
+        foreach (GameObject spawns in spawners)
+        {
+            spawns.SetActive(false);
+        }
     }
 
     public void returnToMenu()

@@ -6,22 +6,22 @@ using TMPro;
 
 public class expBar : MonoBehaviour
 {
-
     public Slider slider;
     public Image fill;
     public TextMeshProUGUI expIndicator;
+    public sceneInfo sceneinfo;
 
-    public void SetmaxExp(int exp)
+    public void SetmaxExp()
     {
-        expIndicator.SetText(slider.value + "/" + exp.ToString());
-        slider.maxValue = exp;
+        expIndicator.SetText(sceneinfo.currentExp + "/" + sceneinfo.maxExp);
+        slider.maxValue = sceneinfo.maxExp;
     }
 
     //this method updates the value of health slider
-    public void SetExp(int exp)
+    public void SetExp()
     {
-        slider.value = exp;
-        expIndicator.SetText(exp.ToString() + "/" + slider.maxValue.ToString());
+        slider.value = sceneinfo.currentExp;
+        expIndicator.SetText(sceneinfo.currentExp + "/" + sceneinfo.maxExp);
     }
 
 }

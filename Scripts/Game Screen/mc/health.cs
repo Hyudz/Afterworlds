@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class health : MonoBehaviour
 {
-    public int maxHealth = 20;
-    public int currentHealth = 20;
     public healthbar healthBar;
 
     private Animator character_animation;
 
     public Canvas gameOverScreen;
+    public Canvas levelUpScreen;
+    public Levelup_system levelup;
     public gameOverScreen gameOver;
 
     public expBar expbar;
-    public int currentExperience = 0;
-    public int maxExperience = 100;
     public int currentLevel = 1;
+
+    public sceneInfo sceneinfo;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,26 +24,29 @@ public class health : MonoBehaviour
          * At the start of the script, set the max health into the current health
          * and call the SetmaxHealth method of the healthBar script
         */
-        currentHealth = maxHealth;
-        healthBar.SetmaxHealth(maxHealth);
+        //currentHealth = maxHealth;
+        //sceneinfo.health = currentHealth;
+        healthBar.SetmaxHealth();
+        expbar.SetExp();
         character_animation = GetComponent<Animator>();
         gameOverScreen.enabled = false;
+        levelUpScreen.enabled = false;
     }
 
     public void TakeDmg(int dmg)
     {
-        currentHealth -= dmg;
-        healthBar.SetHealth(currentHealth);
+        //currentHealth -= dmg;
+        sceneinfo.health -= dmg;
+        healthBar.SetHealth();
         character_animation.SetTrigger("hurt");
 
-        if(currentHealth <= 0)
+        if(sceneinfo.health <= 0)
         {
             //character_animation.SetBool("die", true);
             this.enabled = false;
             gameOverScreen.enabled = true;
             gameOver.gameIsOver = true;
             gameOver.Hide();
-            Time.timeScale = 0;
         }
     }
 
@@ -59,9 +62,9 @@ public class health : MonoBehaviour
 
     private void HandleExperienceChange(int newExperience)
     {
-        currentExperience += newExperience;
-        expbar.SetExp(currentExperience);
-        if(currentExperience >= maxExperience)
+        sceneinfo.currentExp += newExperience;
+        expbar.SetExp();
+        if(sceneinfo.currentExp >= sceneinfo.maxExp)
         {
             LevelUp();
         }
@@ -69,17 +72,28 @@ public class health : MonoBehaviour
 
     void LevelUp()
     {
-        maxHealth += 10;
-        currentHealth = maxHealth;
-        currentExperience = 0;
-        maxExperience += 50;
         currentLevel += 1;
+        sceneinfo.currentExp = 0;
+        sceneinfo.maxExp += 30;
 
-        healthBar.SetHealth(maxHealth);
-        healthBar.SetmaxHealth(maxHealth);
-        expbar.SetExp(currentExperience);
-        expbar.SetmaxExp(maxExperience);
+        expbar.SetExp();
+        expbar.SetmaxExp();
 
+        levelUpScreen.enabled = true;
+        levelup.hide();
+        Time.timeScale = 0;
+    }
 
+    public void addHealth(int addedHealth)
+    {
+        sceneinfo.health += addedHealth;
+        healthBar.SetHealth();
+    }
+
+    public void restoreHealth()
+    {
+        sceneinfo.health = sceneinfo.maxHealth;
+        healthBar.SetHealth();
+        healthBar.SetmaxHealth();
     }
 }

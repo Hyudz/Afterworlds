@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class melee : MonoBehaviour
 {
-    public float currentCd = 0.0f;
-    public float animCd = 1.0f;
+    private float currentCd;
+    [SerializeField] public float animCd;
     public Animator meleeAnimation;
     // Start is called before the first frame update
     void Start()

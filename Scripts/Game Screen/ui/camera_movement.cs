@@ -32,11 +32,7 @@ public class camera_movement : MonoBehaviour
 
         if (rightBoundary != null)
             maxBounds.x = rightBoundary.bounds.max.x;
-        
-        Debug.Log(maxBounds.y);
-        Debug.Log(maxBounds.x);
-        Debug.Log(minBounds.y);
-        Debug.Log(minBounds.x);
+       
     }
 
 

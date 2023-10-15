@@ -6,16 +6,14 @@ public class attack : MonoBehaviour
 
 {
 
-    [SerializeField] private float atkCd;
     private Animator anim;
     private float cdTimer = Mathf.Infinity;
     public Transform attackPoint;
-    public float attackRange = 0.5f;
+    public float attackRange;
     public LayerMask enemyLayers;
-    public int character_dmg = 2;
-    private health character_health;
     public GameObject fireBalls;
-    private int attackLimit;
+    private int attackLimitCounter;
+    public sceneInfo sceneinfo;
 
     //[Header("Targetable Enemy")]
 
@@ -24,17 +22,18 @@ public class attack : MonoBehaviour
     void Awake()
     {
         anim = GetComponent<Animator>();
-        character_health = GetComponent<health>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        sceneinfo.attackRange = attackRange;
         cdTimer += Time.deltaTime;
-        if (cdTimer > atkCd && character_health.currentHealth > 0)
+ 
+        if (cdTimer > sceneinfo.attackCd && sceneinfo.health > 0)
         {
             Attack();
-            attackLimit = 0;
+            attackLimitCounter = 0;
         }
     }
 
@@ -51,18 +50,17 @@ public class attack : MonoBehaviour
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
 
         //RANGED ATK
-        fireBalls.transform.position = attackPoint.position;
-        fireBalls.GetComponent<balls>().SetDirection(Mathf.Sign(transform.localScale.x));
+        //fireBalls.transform.position = attackPoint.position;
+        //fireBalls.GetComponent<balls>().SetDirection(Mathf.Sign(transform.localScale.x));
 
         foreach (Collider2D enemy in hitEnemies)
         {
-            if (attackLimit <= 5)
+            if (attackLimitCounter <= sceneinfo.atkLimit)
             {
                 if (enemy.CompareTag("Enemy"))
                 {
-                    enemy.GetComponent<enemy1_health>().TakeDmg(character_dmg);
-                    attackLimit += 1;
-                    Debug.Log("Attacked enemy:" + attackLimit);
+                    enemy.GetComponent<enemy_health>().TakeDmg(sceneinfo.atkDmg);
+                    attackLimitCounter += 1;
                 }
             }
 

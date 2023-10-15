@@ -40,7 +40,7 @@ public class balls : MonoBehaviour
 
         if (collision.CompareTag("Enemy"))
         {
-            collision.GetComponent<enemy1_health>().TakeDmg(2);
+            collision.GetComponent<enemy_health>().TakeDmg(2);
         } else
         {
             //DO NOTHING

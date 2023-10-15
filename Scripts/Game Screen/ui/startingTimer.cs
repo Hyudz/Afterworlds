@@ -12,14 +12,6 @@ public class startingTimer : MonoBehaviour
     int textTime;
     public gameTimer gameTimer;
 
-    [Header("Spawners")]
-    public spawn_Enemy_ratv1 spawner1;
-
-    private void Start()
-    {
-        Time.timeScale = 0;
-    }
-
 
     public void Update()
     {
@@ -30,8 +22,7 @@ public class startingTimer : MonoBehaviour
 
         if (currentTime <= timer)
         {
-            Time.timeScale = 1.0f;
-            gameTimer.startCount = true;
+            gameTimer.startCount = true;   
             coundownTimer.enabled = false;
             //OnEnable();
         }

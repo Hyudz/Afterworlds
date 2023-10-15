@@ -7,10 +7,11 @@ public class character_movement : MonoBehaviour
     public FixedJoystick Joystick;
     Rigidbody2D character;
     Vector2 movement;
-    [SerializeField] public float movement_Speed;
     public Animator character_animation;
     float horizontal_movement;
     float vertical_movement;
+    public Levelup_system levelup;
+    public sceneInfo sceneinfo;
 
     public void Start()
     {
@@ -24,9 +25,11 @@ public class character_movement : MonoBehaviour
         movement.x = Joystick.Horizontal;
         movement.y = Joystick.Vertical;
 
-        character.MovePosition(character.position + movement * movement_Speed * Time.deltaTime);
+        //movement_Speed += levelup.movementSpeed;
+
+        character.MovePosition(character.position + movement * sceneinfo.movementSpeed * Time.deltaTime);
         horizontal_movement = movement.x;
-        character.velocity = new Vector2 (horizontal_movement * movement_Speed, character.velocity.y);
+        character.velocity = new Vector2 (horizontal_movement * sceneinfo.movementSpeed, character.velocity.y);
         character_animation.SetBool("run", Joystick.Horizontal != 0);
 
         // Move right
