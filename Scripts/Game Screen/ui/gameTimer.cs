@@ -36,7 +36,6 @@ public class gameTimer : MonoBehaviour
             currentTime -= Time.deltaTime;
             textTime = (int) currentTime;
             currentTimeText.SetText(textTime.ToString());
-            Debug.Log(currentTime);
                 if (textTime <= 0)
                 {
                     SceneManager.LoadScene("Map 2");

@@ -27,4 +27,17 @@ public class sceneInfo : ScriptableObject
         currentExp = 0;
         atkLimit = 5;
     }
+
+    public void retry()
+    {
+        health = 20;
+        maxHealth = 20;
+        atkDmg = 3;
+        attackCd = 1;
+        movementSpeed = 200.0f;
+        attackRange = 26.2f;
+        maxExp = 50;
+        currentExp = 0;
+        atkLimit = 5;
+    }
 }

@@ -11,6 +11,7 @@ public class gameOverScreen : MonoBehaviour
     public Canvas timer_ui;
     public bool gameIsOver = false;
     public GameObject[] spawners;
+    public sceneInfo sceneinfo;
     //public Button pauseButton;
     public void Start()
     {
@@ -29,8 +30,24 @@ public class gameOverScreen : MonoBehaviour
         }
     }
 
+    public void retry1()
+    {
+        Time.timeScale = 1.0f;
+        SceneManager.LoadScene("Game Screen");
+        sceneinfo.retry();
+        gameIsOver = false;
+    }
+
+    public void retry()
+    {
+        Time.timeScale = 1.0f;
+        sceneinfo.retry();
+        gameIsOver = false;
+    }
+
     public void returnToMenu()
     {
+        Time.timeScale = 1.0f;
         SceneManager.LoadScene("Main Menu");
     }
 

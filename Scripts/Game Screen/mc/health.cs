@@ -79,6 +79,7 @@ public class health : MonoBehaviour
         expbar.SetExp();
         expbar.SetmaxExp();
 
+        levelup.choose();
         levelUpScreen.enabled = true;
         levelup.hide();
         Time.timeScale = 0;

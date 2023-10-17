@@ -12,4 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c8e2d3a3147010408dbcb306cf1fb0a, type: 3}
   m_Name: SceneInfo
   m_EditorClassIdentifier: 
-  isNextScene: 1
+  movementSpeed: 200
+  health: 20
+  maxHealth: 20
+  attackCd: 1
+  attackRange: 26.2
+  currentExp: 0
+  maxExp: 50
+  atkDmg: 3
+  atkLimit: 5
