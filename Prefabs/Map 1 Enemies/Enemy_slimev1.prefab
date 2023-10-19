@@ -172,6 +172,8 @@ MonoBehaviour:
   maxHealth: 5
   currentHealth: 0
   addedExp: 20
+  sceneinfo: {fileID: 11400000, guid: 1d31201eb56e0ec498f4493babfa643a, type: 2}
+  addedAftercoins: 2
 --- !u!114 &6015542425462515450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,7 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c44a4813dbc7de249ab858a1dfe786d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movement_speed: 75
+  movement_speed: 85
   enemy_animation: {fileID: 0}
   flip: 0
 --- !u!114 &8424773340921895790
@@ -204,8 +206,9 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
-  attackRange: 10.6
   attackPoint: {fileID: 8338090673443619709}
+  boxWidth: 16.06
+  boxHeight: 12.8
 --- !u!1 &3890139706629800472
 GameObject:
   m_ObjectHideFlags: 0
@@ -315,7 +318,7 @@ Transform:
   m_GameObject: {fileID: 5433366739601489431}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.409, y: -0.29, z: 0}
+  m_LocalPosition: {x: -0.409, y: -0.297, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

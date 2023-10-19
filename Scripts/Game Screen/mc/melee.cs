@@ -22,6 +22,6 @@ public class melee : MonoBehaviour
             meleeAnimation.SetTrigger("attack_melee");
             currentCd = 0.0f;
         }
-        
     }
+
 }

@@ -88,6 +88,7 @@ public class health : MonoBehaviour
     public void addHealth(int addedHealth)
     {
         sceneinfo.health += addedHealth;
+        sceneinfo.maxHealth += addedHealth;
         healthBar.SetHealth();
     }
 

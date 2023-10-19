@@ -21,6 +21,11 @@ public class menu : MonoBehaviour
         SceneManager.LoadScene("Inventory");
     }
 
+    public void toForge()
+    {
+        SceneManager.LoadScene("Forge");
+    }
+
     public void ExitGame()
     {
         Application.Quit();

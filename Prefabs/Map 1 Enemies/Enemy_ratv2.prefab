@@ -172,6 +172,8 @@ MonoBehaviour:
   maxHealth: 2
   currentHealth: 0
   addedExp: 10
+  sceneinfo: {fileID: 11400000, guid: 1d31201eb56e0ec498f4493babfa643a, type: 2}
+  addedAftercoins: 2
 --- !u!114 &3749663147643801098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,7 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c44a4813dbc7de249ab858a1dfe786d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movement_speed: 125
+  movement_speed: 100
   enemy_animation: {fileID: 0}
   flip: 0
 --- !u!114 &3240226009929051129
@@ -204,8 +206,9 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
-  attackRange: 6.34
   attackPoint: {fileID: 2835917939248878677}
+  boxWidth: 2.29
+  boxHeight: 15.35
 --- !u!1 &5103157293809780396
 GameObject:
   m_ObjectHideFlags: 0

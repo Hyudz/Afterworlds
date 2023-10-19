@@ -294,7 +294,6 @@ MonoBehaviour:
   enemyPrefabs:
   - {fileID: 6095945893662749193, guid: a0b3cc0f0da49fc4e92d20d904f87470, type: 3}
   - {fileID: 2447522215180411760, guid: 92056317e1db47b498fc3b2a7ab1df2d, type: 3}
-  spawnPoint: {fileID: 818354408}
   spawnInterval: 8
 --- !u!1001 &831831598
 PrefabInstance:
@@ -1132,7 +1131,6 @@ MonoBehaviour:
   enemyPrefabs:
   - {fileID: 138408216814321512, guid: 7fc2153c998d8dc4499123d48f1cf36b, type: 3}
   - {fileID: 3413705837419302665, guid: 2c52768a144c7e94a855fd4eef4985e8, type: 3}
-  spawnPoint: {fileID: 2083801874}
   spawnInterval: 5
 --- !u!1001 &2109704817
 PrefabInstance:
@@ -1348,7 +1346,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.84, g: 0.84, b: 0.84, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2691,10 +2689,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 8888450739059617244}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 95.55075, y: -26.6}
-  m_SizeDelta: {x: 238.08, y: 42.129}
+  m_AnchorMin: {x: 0.0924648, y: 0}
+  m_AnchorMax: {x: 0.9862676, y: 1}
+  m_AnchoredPosition: {x: -0.20500183, y: -2.6000004}
+  m_SizeDelta: {x: -0.40997, y: -5.871}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &427412271649555535
 RectTransform:
@@ -3158,11 +3156,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8681103455ed7144a4dd53adcf267cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 50
-  attackSpeed: 0.25
+  movementSpeed: 25
+  attackSpeed: 0.1
   hp: 10
   damage: 2
   limit: 2
+  attackRange: 0
+  boxWidth: 5
+  boxHeight: 5
   player_health: {fileID: 4428080553055684951}
   levelupSystem: {fileID: 2818559041117413612}
   meleeAnim: {fileID: 5079834592167088551}
@@ -55505,10 +55506,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
+  m_fontSize: 41.55
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
@@ -55541,7 +55542,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0.00024414062}
+  m_margin: {x: 0.6783829, y: 0, z: 0, w: 0.00024414062}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -55575,6 +55576,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8888450739059617244}
   - component: {fileID: 6022358372489260390}
+  - component: {fileID: 8888450739059617245}
   m_Layer: 5
   m_Name: Countdown Bar
   m_TagString: Untagged
@@ -56329,6 +56331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609bebaaea5d34c46a33ae20e2fe5e39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneinfo: {fileID: 0}
 --- !u!61 &4626925892112855201
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -56892,6 +56895,7 @@ Transform:
   - {fileID: 7039605571907178306}
   - {fileID: 1496752104938322274}
   - {fileID: 1233058428797121176}
+  - {fileID: 8003614365760425940}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &5338263829524101532
@@ -57283,9 +57287,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 300
+  m_MaxValue: 180
   m_WholeNumbers: 1
-  m_Value: 300
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -59562,6 +59566,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609bebaaea5d34c46a33ae20e2fe5e39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneinfo: {fileID: 0}
 --- !u!222 &6777292105337836393
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -59659,7 +59664,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackPoint: {fileID: 3358933691485824309}
-  attackRange: 26.2
   enemyLayers:
     serializedVersion: 2
     m_Bits: 256
@@ -60516,14 +60520,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6649074450949451943}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -928.06964, y: 1393.2494, z: 57584.13}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1740.9304, y: -196.75061, z: 57584.13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 818354408}
   - {fileID: 2083801874}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 5251807869737703199}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8072037813288822045
 MonoBehaviour:
@@ -61358,6 +61362,20 @@ RectTransform:
   m_AnchoredPosition: {x: 188, y: -245}
   m_SizeDelta: {x: 218.4615, y: 48.311646}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &8888450739059617245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3664702151788127792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 721de2a396b89c44cac70cf9635610e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cdSlider: {fileID: 6022358372489260390}
+  fill: {fileID: 237712469554778999}
 --- !u!4 &8919002416247058823
 Transform:
   m_ObjectHideFlags: 0
@@ -61427,12 +61445,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dd59eadcfbada94b937ea3d8bbaec7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentTime: 180
+  currentTime: 15
   currentTimeText: {fileID: 3591454990018054336}
   startCount: 0
   gameOver: {fileID: 461182811846776343}
+  countdown_bar: {fileID: 8888450739059617245}
+  spawners:
+  - {fileID: 818354407}
+  - {fileID: 2083801873}
   ghoul_spawner: {fileID: 818354409}
   swordsman_spawner: {fileID: 2083801875}
+  ghoul_health:
+  - {fileID: 4418028135629580916, guid: a0b3cc0f0da49fc4e92d20d904f87470, type: 3}
+  - {fileID: 1166636625587636808, guid: 92056317e1db47b498fc3b2a7ab1df2d, type: 3}
+  swordsman_health:
+  - {fileID: 6824826492453415582, guid: 7fc2153c998d8dc4499123d48f1cf36b, type: 3}
+  - {fileID: 4791347295748973753, guid: 2c52768a144c7e94a855fd4eef4985e8, type: 3}
+  ghoul_atk:
+  - {fileID: 374460839407067064, guid: a0b3cc0f0da49fc4e92d20d904f87470, type: 3}
+  - {fileID: 2364389657365102961, guid: 92056317e1db47b498fc3b2a7ab1df2d, type: 3}
+  swordsman_atk:
+  - {fileID: 3856339878961067596, guid: 7fc2153c998d8dc4499123d48f1cf36b, type: 3}
+  - {fileID: 282132974236794788, guid: 2c52768a144c7e94a855fd4eef4985e8, type: 3}
+  ghoul_enem:
+  - {fileID: 5365629998466892815, guid: a0b3cc0f0da49fc4e92d20d904f87470, type: 3}
+  - {fileID: 6557759757580846965, guid: 92056317e1db47b498fc3b2a7ab1df2d, type: 3}
+  swordsman_enem:
+  - {fileID: 3997054494917622435, guid: 7fc2153c998d8dc4499123d48f1cf36b, type: 3}
+  - {fileID: 8644992506147128311, guid: 2c52768a144c7e94a855fd4eef4985e8, type: 3}
 --- !u!114 &8922856355112669388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110251,7 +110291,6 @@ SceneRoots:
   - {fileID: 5886891639388172112}
   - {fileID: 8691646969901559168}
   - {fileID: 6898436228607376120}
-  - {fileID: 8003614365760425940}
   - {fileID: 1094674260}
   - {fileID: 8919882584416088699}
   - {fileID: 6343397753001402380}

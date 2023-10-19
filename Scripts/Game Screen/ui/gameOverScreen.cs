@@ -47,6 +47,7 @@ public class gameOverScreen : MonoBehaviour
 
     public void returnToMenu()
     {
+        sceneinfo.aftercoins += sceneinfo.current_aftercoins;
         Time.timeScale = 1.0f;
         SceneManager.LoadScene("Main Menu");
     }

@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class enemy_health : MonoBehaviour
 {
-    [SerializeField] int maxHealth;
+    [SerializeField] public int maxHealth;
     public int currentHealth;
     private Animator enemy_animation;
     [SerializeField] public int addedExp;
+    public sceneInfo sceneinfo;
+    [SerializeField] public int addedAftercoins;
 
     private void Start()
     {
@@ -29,6 +31,7 @@ public class enemy_health : MonoBehaviour
 
     public void Die()
     {
+        sceneinfo.current_aftercoins += addedAftercoins;
         enemy_animation.SetBool("isDead", true);
         new WaitForSeconds(2);
         Destroy(this.gameObject);

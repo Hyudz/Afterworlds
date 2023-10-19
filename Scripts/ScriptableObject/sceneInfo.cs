@@ -14,6 +14,10 @@ public class sceneInfo : ScriptableObject
     public int maxExp;
     public int atkDmg;
     public int atkLimit;
+    public int aftercoins;
+    public int current_aftercoins;
+    public float boxWidth;
+    public float boxHeight;
 
     private void OnEnable()
     {
@@ -26,10 +30,16 @@ public class sceneInfo : ScriptableObject
         maxExp = 50;
         currentExp = 0;
         atkLimit = 5;
-    }
+        aftercoins = 0;
+        boxWidth = 47.8f;
+        boxHeight = 57.4f;
+        current_aftercoins = 0;
+        aftercoins = 0;
+}
 
     public void retry()
     {
+        current_aftercoins = 0;
         health = 20;
         maxHealth = 20;
         atkDmg = 3;
@@ -39,5 +49,8 @@ public class sceneInfo : ScriptableObject
         maxExp = 50;
         currentExp = 0;
         atkLimit = 5;
+        boxWidth = 47.8f;
+        boxHeight = 57.4f;
+        current_aftercoins = 0;
     }
 }

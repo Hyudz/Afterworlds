@@ -9,7 +9,6 @@ public class attack : MonoBehaviour
     private Animator anim;
     private float cdTimer = Mathf.Infinity;
     public Transform attackPoint;
-    public float attackRange;
     public LayerMask enemyLayers;
     public GameObject fireBalls;
     private int attackLimitCounter;
@@ -27,7 +26,6 @@ public class attack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        sceneinfo.attackRange = attackRange;
         cdTimer += Time.deltaTime;
  
         if (cdTimer > sceneinfo.attackCd && sceneinfo.health > 0)
@@ -47,7 +45,8 @@ public class attack : MonoBehaviour
          * attackRange - the radius
          * enemyLayers - filter certain layers
         */
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+        //Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, sceneinfo.attackRange, enemyLayers);
+        Collider2D[] hitEnemies = Physics2D.OverlapBoxAll(attackPoint.position, new Vector2(sceneinfo.boxWidth, sceneinfo.boxHeight), enemyLayers);
 
         //RANGED ATK
         //fireBalls.transform.position = attackPoint.position;
@@ -71,7 +70,11 @@ public class attack : MonoBehaviour
     {
         if (attackPoint == null)
             return;
-        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireCube(attackPoint.position, new Vector3(sceneinfo.boxWidth, sceneinfo.boxHeight, 0));
+
+        //Gizmos.DrawWireSphere(attackPoint.position, sceneinfo.attackRange);
     }
 
 

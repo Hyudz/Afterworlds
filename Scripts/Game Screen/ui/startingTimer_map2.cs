@@ -24,7 +24,6 @@ public class startingTimer_map2 : MonoBehaviour
         {
             gameTimer2.startCount = true;   
             coundownTimer.enabled = false;
-            //OnEnable();
         }
     }
 

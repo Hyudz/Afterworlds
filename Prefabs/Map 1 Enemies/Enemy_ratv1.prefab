@@ -172,6 +172,8 @@ MonoBehaviour:
   maxHealth: 2
   currentHealth: 0
   addedExp: 10
+  sceneinfo: {fileID: 11400000, guid: 1d31201eb56e0ec498f4493babfa643a, type: 2}
+  addedAftercoins: 1
 --- !u!114 &3749663147643801098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,8 +206,9 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
-  attackRange: 6.79
   attackPoint: {fileID: 2835917939248878677}
+  boxWidth: 2.29
+  boxHeight: 15.35
 --- !u!1 &5103157293809780396
 GameObject:
   m_ObjectHideFlags: 0

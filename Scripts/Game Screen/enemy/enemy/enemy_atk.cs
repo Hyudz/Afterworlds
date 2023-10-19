@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class enemy_atk : MonoBehaviour
 {
-    [SerializeField] private float attackCooldown;
-    //[SerializeField] private float range;
-    [SerializeField] private int damage;
-    //[SerializeField] private float colliderDistance;
+    [SerializeField] public float attackCooldown;
+    [SerializeField] public int damage;
     private float cooldownTimer = Mathf.Infinity;
-    //[SerializeField] private BoxCollider2D boxCollider;
     [SerializeField] private LayerMask playerLayer;
-    public float attackRange;
     public Transform attackPoint;
+    public float boxWidth;
+    public float boxHeight;
 
     private Animator enemy_animation;
     private health character_health;
@@ -38,7 +36,7 @@ public class enemy_atk : MonoBehaviour
             }
         } */
 
-        Collider2D[] hitCharacter = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, playerLayer);
+        Collider2D[] hitCharacter = Physics2D.OverlapBoxAll(attackPoint.position, new Vector2(boxWidth, boxHeight), playerLayer);
 
         foreach (Collider2D character in hitCharacter)
         {
@@ -57,7 +55,9 @@ public class enemy_atk : MonoBehaviour
     {
         if (attackPoint == null)
             return;
-        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(attackPoint.position, new Vector2(boxWidth, boxHeight));
+        
     }
 
     /*private bool PlayerInSight()

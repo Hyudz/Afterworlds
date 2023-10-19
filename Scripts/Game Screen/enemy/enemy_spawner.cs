@@ -8,19 +8,22 @@ public class enemy_spawner : MonoBehaviour
     [SerializeField] private GameObject[] enemyPrefabs;
 
     [Header("Properties")]
-    [SerializeField] private Transform spawnPoint;
     [SerializeField] public float spawnInterval;
 
     private void Start()
     {
         StartCoroutine(SpawnRandomEnemy(spawnInterval));
-        spawnPoint = GetComponent<Transform>();
     }
 
     private IEnumerator SpawnRandomEnemy(float interval)
     {
         while (true)
         {
+
+            float randomX = Random.Range(-3600, -340);
+            float randomY = Random.Range(2180, 727);
+            Vector3 randomPosition = new Vector3(randomX, randomY, 0f);
+
             yield return new WaitForSeconds(interval);
 
             // Choose a random enemy prefab from the array
@@ -28,7 +31,7 @@ public class enemy_spawner : MonoBehaviour
             GameObject randomEnemyPrefab = enemyPrefabs[randomIndex];
 
             // Spawn the selected enemy prefab
-            GameObject newEnemy = Instantiate(randomEnemyPrefab, spawnPoint.position, Quaternion.identity);
+            GameObject newEnemy = Instantiate(randomEnemyPrefab, randomPosition, Quaternion.identity);
         }
     }
 }

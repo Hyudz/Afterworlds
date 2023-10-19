@@ -5,10 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class pauseButton : MonoBehaviour
 {
-
+    public sceneInfo sceneinfo;
     //public GameObject pause_panel;
     public void saveAndExit()
     {
+        Time.timeScale = 1.0f;
+        sceneinfo.current_aftercoins = 0;
         SceneManager.LoadScene("Main Menu");
     }
 

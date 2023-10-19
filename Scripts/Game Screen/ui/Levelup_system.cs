@@ -13,6 +13,9 @@ public class Levelup_system : MonoBehaviour
     [SerializeField] public int hp;
     [SerializeField] public int damage;
     [SerializeField] public int limit;
+    [SerializeField] public float attackRange;
+    [SerializeField] public float boxWidth;
+    [SerializeField] public float boxHeight;
 
     [Header("Stats References")]
     public health player_health;
@@ -80,6 +83,8 @@ public class Levelup_system : MonoBehaviour
         } else if (buff == "Increase cleaving range")
         {
             sceneinfo.atkLimit += limit;
+            sceneinfo.boxWidth += boxWidth;
+            sceneinfo.boxHeight += boxHeight;
         } else
         {
             Debug.Log("NO BUFF WAS APPLIED");
@@ -167,14 +172,6 @@ public class Levelup_system : MonoBehaviour
 
         Time.timeScale = 0;
     }
-
-    //check to see if the buff was already chosen so that it wont be duplicated
-    public void checkBuff()
-    {
-        //while (chosenBuffs)
-    }
-
-
     public void show()
     {
         UI.enabled = true;

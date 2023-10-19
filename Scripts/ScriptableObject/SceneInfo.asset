@@ -13,11 +13,15 @@ MonoBehaviour:
   m_Name: SceneInfo
   m_EditorClassIdentifier: 
   movementSpeed: 200
-  health: 20
-  maxHealth: 20
-  attackCd: 1
+  health: 0
+  maxHealth: 50
+  attackCd: 9.43
   attackRange: 26.2
-  currentExp: 0
-  maxExp: 50
-  atkDmg: 3
-  atkLimit: 5
+  currentExp: 110
+  maxExp: 560
+  atkDmg: 5
+  atkLimit: 13
+  aftercoins: 891
+  current_aftercoins: 891
+  boxWidth: 57.8
+  boxHeight: 67.4

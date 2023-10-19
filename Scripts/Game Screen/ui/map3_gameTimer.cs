@@ -12,13 +12,29 @@ public class map3_gameTimer : MonoBehaviour
     int textTime;
     public bool startCount = false;
     public gameOverScreen gameOver;
+    public countdownBar countdown_bar;
+    public GameObject[] spawners;
 
     [Header("Spawners Map 3")]
     public enemy_spawner ghoul_spawner;
     public enemy_spawner swordsman_spawner;
 
+    [Header("Enemy Health Stats")]
+    public enemy_health[] ghoul_health;
+    public enemy_health[] swordsman_health;
+
+    [Header("Enemy Attack Stats")]
+    public enemy_atk[] ghoul_atk;
+    public enemy_atk[] swordsman_atk;
+
+    [Header("Enemy Movement Stats")]
+    public enemy[] ghoul_enem;
+    public enemy[] swordsman_enem;
+
+    private bool in150Secs = false;
     private bool in2Mins = false;
-    private bool in1Mins = false;
+    private bool in90Secs = false;
+    private bool in1Min = false;
 
     // Update is called once per frame
 
@@ -32,23 +48,90 @@ public class map3_gameTimer : MonoBehaviour
         {
             currentTime -= Time.deltaTime;
             textTime = (int) currentTime;
+            countdown_bar.value(textTime);
             currentTimeText.SetText(textTime.ToString());
-                if (currentTime <= 0)
+            if (currentTime <= 0)
+            {
+                currentTimeText.SetText("Boss Fight!");
+            }
+            else if (textTime == 150 && in150Secs == false) // 2 mins and 30 secs
+            {
+                in150Secs = true;
+                ghoul_spawner.spawnInterval -= 1;
+                swordsman_spawner.spawnInterval -= 2;
+
+                //add max hp for each of the swordsman
+                foreach (enemy_health swordsmanHp in swordsman_health)
                 {
-                    //Summon the boss
+                    swordsmanHp.maxHealth += 3;
                 }
-                else if (textTime == 120 && in2Mins == false) // 2 mins
+
+                //add movement speed for each of the ghoul
+                foreach (enemy ghoulSpd in ghoul_enem)
                 {
+                    ghoulSpd.movement_speed += 10.0f;
+                }
+            }
+
+            else if (textTime == 120 && in2Mins == false) // 2 mins
+            {
+                //add attack range for each of the swordsman
+                foreach (enemy_atk swordsmanRange in swordsman_atk)
+                {
+                    swordsmanRange.boxHeight += 5.0f;
+                    swordsmanRange.boxWidth += 5.0f;
+                } 
+
+                //add attack damage for each of the ghoul
+                foreach (enemy_atk ghoulAtk in ghoul_atk)
+                {
+                    ghoulAtk.damage += 1;
+                }
+
                 in2Mins = true;
+            }
+            else if (textTime == 90 && in90Secs == false) // 1 min and 30 secs
+            {
+                in90Secs = true;
                 ghoul_spawner.spawnInterval -= 2;
                 swordsman_spawner.spawnInterval -= 1;
-                }
-                else if (textTime == 60 && in1Mins == false) // 1 mins
+
+                //add attack dmg for swordsman
+                foreach (enemy_atk swordsmanAtk in swordsman_atk)
                 {
-                in1Mins =true;
-                ghoul_spawner.spawnInterval -= 2;
-                swordsman_spawner.spawnInterval -= 1;
+                    swordsmanAtk.damage += 1;
                 }
+
+                //reduce attack cooldown for ghoul
+                foreach (enemy_atk ghoulCd in ghoul_atk)
+                {
+                    ghoulCd.attackCooldown -= 3;
+                }
+            }
+            else if (textTime == 60 && in1Min == false)
+            {
+
+                //add movement speed for swordsman
+                foreach (enemy swordsmanSpd in swordsman_enem)
+                {
+                    swordsmanSpd.movement_speed += 10.0f;
+                }
+
+                //add hp for ghoul
+                foreach (enemy_health ghoulHp in ghoul_health)
+                {
+                    ghoulHp.maxHealth += 3;
+                }
+
+                in1Min = true;
+
+            } else if (textTime == 10)
+            {
+                foreach (GameObject spawn in spawners)
+                {
+                    spawn.SetActive(false);
+                }
+            }
             
         }
     }
