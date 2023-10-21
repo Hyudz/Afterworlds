@@ -25,18 +25,34 @@ public class enemy : MonoBehaviour
     {
 
         //eto yung sa movement ng enemies
-        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, movement_speed * Time.deltaTime);
+
+        if (player != null)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, movement_speed * Time.deltaTime);
+        } else
+        {
+            //stop moving
+        }
         //enemy_animation.SetBool("walk", true);
 
         Vector3 scale = transform.localScale;
-        if (player.transform.position.x > transform.position.x)
+        try
         {
-            scale.x = Mathf.Abs(scale.x) * -1 * (flip ? -1:1);
-        } else
-        {
-            scale.x = Mathf.Abs(scale.x) * (flip ? -1 : 1);
+            if (player.transform.position.x > transform.position.x)
+            {
+                scale.x = Mathf.Abs(scale.x) * -1 * (flip ? -1 : 1);
+            }
+            else
+            {
+                scale.x = Mathf.Abs(scale.x) * (flip ? -1 : 1);
+
+            }
+            transform.localScale = scale;
         }
-        transform.localScale = scale;
+        catch
+        {
+            //DO NOTHING
+        }
 
     }
 

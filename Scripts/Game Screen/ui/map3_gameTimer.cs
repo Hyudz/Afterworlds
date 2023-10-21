@@ -14,6 +14,7 @@ public class map3_gameTimer : MonoBehaviour
     public gameOverScreen gameOver;
     public countdownBar countdown_bar;
     public GameObject[] spawners;
+    public GameObject boss;
 
     [Header("Spawners Map 3")]
     public enemy_spawner ghoul_spawner;
@@ -35,6 +36,7 @@ public class map3_gameTimer : MonoBehaviour
     private bool in2Mins = false;
     private bool in90Secs = false;
     private bool in1Min = false;
+    private bool bossFight = false;
 
     // Update is called once per frame
 
@@ -50,9 +52,10 @@ public class map3_gameTimer : MonoBehaviour
             textTime = (int) currentTime;
             countdown_bar.value(textTime);
             currentTimeText.SetText(textTime.ToString());
-            if (currentTime <= 0)
+            if (currentTime <= 0 && bossFight == false)
             {
-                currentTimeText.SetText("Boss Fight!");
+                boss.SetActive(true);
+                bossFight = true;   
             }
             else if (textTime == 150 && in150Secs == false) // 2 mins and 30 secs
             {
@@ -135,4 +138,5 @@ public class map3_gameTimer : MonoBehaviour
             
         }
     }
+
 }

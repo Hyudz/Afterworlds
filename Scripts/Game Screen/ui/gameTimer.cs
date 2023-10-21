@@ -19,6 +19,9 @@ public class gameTimer : MonoBehaviour
     public enemy_spawner slime_spawner;
     public enemy_spawner mouth_spawner;
 
+    [Header("Spawner Object")]
+    public GameObject[] map1Spawners;
+
     [Header("Enemy Health Stats")]
     public enemy_health[] rat_health;
     public enemy_health[] slime_health;
@@ -38,6 +41,7 @@ public class gameTimer : MonoBehaviour
     private bool in3Mins = false;
     private bool in2Mins = false;
     private bool in1Mins = false;
+    private bool in10secs = false;
 
     // Update is called once per frame
 
@@ -139,6 +143,12 @@ public class gameTimer : MonoBehaviour
                         mouthHealth.maxHealth += 3;
                     }
                     in1Mins = true;
+            } else if (textTime == 10 && in10secs == false) { 
+                foreach (GameObject spawner in map1Spawners)
+                {
+                    spawner.SetActive(false);
+                }
+                in10secs = true;
             }
         }
     }

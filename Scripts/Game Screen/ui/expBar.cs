@@ -8,12 +8,12 @@ public class expBar : MonoBehaviour
 {
     public Slider slider;
     public Image fill;
-    public TextMeshProUGUI expIndicator;
+    //public TextMeshProUGUI expIndicator;
     public sceneInfo sceneinfo;
 
     public void SetmaxExp()
     {
-        expIndicator.SetText(sceneinfo.currentExp + "/" + sceneinfo.maxExp);
+        //expIndicator.SetText(sceneinfo.currentExp + "/" + sceneinfo.maxExp);
         slider.maxValue = sceneinfo.maxExp;
     }
 
@@ -21,7 +21,7 @@ public class expBar : MonoBehaviour
     public void SetExp()
     {
         slider.value = sceneinfo.currentExp;
-        expIndicator.SetText(sceneinfo.currentExp + "/" + sceneinfo.maxExp);
+        //expIndicator.SetText(sceneinfo.currentExp + "/" + sceneinfo.maxExp);
     }
 
 }

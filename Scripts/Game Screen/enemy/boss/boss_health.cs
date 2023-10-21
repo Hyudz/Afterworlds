@@ -6,6 +6,8 @@ public class boss_health : MonoBehaviour
 {
     [SerializeField] public int maxHealth;
     private int currentHealth;
+    public Canvas winner;
+    public youwon win;
 
     // Start is called before the first frame update
     void Start()
@@ -16,6 +18,7 @@ public class boss_health : MonoBehaviour
     public void takeDamage(int dmgTaken)
     {
         currentHealth -= dmgTaken;
+        Debug.Log(currentHealth);
 
         if (currentHealth <= 0)
         {
@@ -26,5 +29,7 @@ public class boss_health : MonoBehaviour
     {
         Destroy(this.gameObject);
         GetComponent<Collider2D>().enabled = false;
+        winner.enabled = true;
+        win.hide();
     }
 }

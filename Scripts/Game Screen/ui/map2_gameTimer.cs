@@ -20,6 +20,9 @@ public class map2_gameTimer : MonoBehaviour
     public enemy_spawner negGoblin_spawner;
     public enemy_spawner owl_spawner;
 
+    [Header("Spawner Object")]
+    public GameObject[] map2Spawners;
+
     [Header("Enemy Health Stats")]
     public enemy_health[] deer_health;
     public enemy_health[] owl_health;
@@ -39,6 +42,7 @@ public class map2_gameTimer : MonoBehaviour
     private bool in3Mins = false;
     private bool in2Mins = false;
     private bool in1Min = false;
+    private bool in10secs = false;
 
     // Update is called once per frame
 
@@ -100,7 +104,6 @@ public class map2_gameTimer : MonoBehaviour
                 {
                 in2Mins=true;
                 reducedInterval(2);
-
                 //reduce the attack cooldown for the goblins
                 foreach (enemy_atk goblinAtk in goblin_atk)
                 {
@@ -137,6 +140,13 @@ public class map2_gameTimer : MonoBehaviour
 
                 in1Min = true;
 
+            }
+                else if (textTime == 10 && in10secs == false)
+            {
+                foreach (GameObject spawner in map2Spawners)
+                {
+                    spawner.SetActive(false);
+                }
             }
             
         }

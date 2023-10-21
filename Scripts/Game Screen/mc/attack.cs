@@ -56,10 +56,16 @@ public class attack : MonoBehaviour
         {
             if (attackLimitCounter <= sceneinfo.atkLimit)
             {
+                Debug.Log(enemy.name);
                 if (enemy.CompareTag("Enemy"))
                 {
+                    Debug.Log("Hey its an enemy");
                     enemy.GetComponent<enemy_health>().TakeDmg(sceneinfo.atkDmg);
                     attackLimitCounter += 1;
+                } else if (enemy.CompareTag("Boss"))
+                {
+                    Debug.Log("Its the boss!");
+                    enemy.GetComponent<boss_health>().takeDamage(sceneinfo.atkDmg);
                 }
             }
 

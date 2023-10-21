@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c8e2d3a3147010408dbcb306cf1fb0a, type: 3}
   m_Name: SceneInfo
   m_EditorClassIdentifier: 
-  movementSpeed: 200
-  health: 0
-  maxHealth: 50
-  attackCd: 9.43
+  movementSpeed: 230
+  health: 80
+  maxHealth: 20
+  attackCd: 1
   attackRange: 26.2
-  currentExp: 110
-  maxExp: 560
-  atkDmg: 5
-  atkLimit: 13
-  aftercoins: 891
-  current_aftercoins: 891
-  boxWidth: 57.8
-  boxHeight: 67.4
+  currentExp: 0
+  maxExp: 50
+  atkDmg: 3
+  atkLimit: 5
+  aftercoins: 7900
+  current_aftercoins: 0
+  boxWidth: 47.8
+  boxHeight: 57.4

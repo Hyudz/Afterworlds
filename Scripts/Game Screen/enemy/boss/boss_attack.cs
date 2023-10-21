@@ -17,11 +17,21 @@ public class boss_attack : MonoBehaviour
 
     public float atk1Cd;
     public Transform handClap;
-    Transform player;
+    private List<string> bossAttacks = new List<string>();
+
+    [Header("Attack Damage Values")]
+    [SerializeField] public int punch_dmg;
+    [SerializeField] public int multipunch_dmg;
+    [SerializeField] public int stomp_dmg;
+    [SerializeField] public int clap_dmg;
+
     // Start is called before the first frame update
     void Start()
-    {
-        player = GameObject.FindGameObjectWithTag("Character").transform;
+    { 
+        bossAttacks.Add("Stomp");
+        bossAttacks.Add("Punch");
+        bossAttacks.Add("Multi Punch");
+        bossAttacks.Add("Clap");
     }
 
     // Update is called once per frame
@@ -29,23 +39,24 @@ public class boss_attack : MonoBehaviour
     {
         atk1Cd += Time.deltaTime;
 
-        /*if (PlayerInSight())
-        {
-            Debug.Log("this is working");
-            if (cooldownTimer >= attackCooldown)
-            {
-                cooldownTimer = 0;
-                //enemy_animation.SetTrigger("attack");
-                character_health.GetComponent<health>().TakeDmg(damage);
-            }
-        } */
-
         if (atk1Cd >= 5)
         {
-            //StartCoroutine(StompoAttack());
-            //StartCoroutine(punchAttack());
-            //StartCoroutine(multipunchAttack());
-            StartCoroutine(clapAttack());
+
+            int randAtk = Random.Range(0, bossAttacks.Count);
+
+            if (randAtk == 0)
+            {
+                StartCoroutine(StompoAttack());
+            } else if (randAtk == 1)
+            {
+                StartCoroutine(punchAttack());
+            } else if (randAtk == 2)
+            {
+                StartCoroutine(multipunchAttack());
+            } else if (randAtk == 3) {
+                StartCoroutine(clapAttack());
+            }
+            
         }
 
     }
@@ -77,9 +88,10 @@ public class boss_attack : MonoBehaviour
                     atk1Cd = 0.0f;
                     boss_Movement.willStomp();
                     stomp.SetTrigger("stomp");
-                    yield return new WaitForSeconds(0.5f);
-                    character.GetComponent<health>().TakeDmg(0);
-                StopCoroutine(StompoAttack());
+             
+                yield return new WaitForSeconds(0.5f);
+                    character.GetComponent<health>().TakeDmg(stomp_dmg);
+                    StopCoroutine(StompoAttack());
                 }
         }
     }
@@ -95,7 +107,7 @@ public class boss_attack : MonoBehaviour
                 atk1Cd = 0.0f;
                 punch.SetTrigger("punch");
                 yield return new WaitForSeconds(0.5f);
-                character.GetComponent<health>().TakeDmg(0);
+                character.GetComponent<health>().TakeDmg(punch_dmg);
                 StopCoroutine(punchAttack());
             }
         }
@@ -112,7 +124,7 @@ public class boss_attack : MonoBehaviour
                 atk1Cd = 0.0f;
                 multiPunch.SetTrigger("multiPunch");
                 yield return new WaitForSeconds(0.5f);
-                character.GetComponent<health>().TakeDmg(0);
+                character.GetComponent<health>().TakeDmg(multipunch_dmg);
                 StopCoroutine(multipunchAttack());
             }
         }
@@ -134,7 +146,7 @@ public class boss_attack : MonoBehaviour
                 clap1.SetTrigger("clap1");
 
                 yield return new WaitForSeconds(0.55f);
-                character.GetComponent<health>().TakeDmg(0);
+                character.GetComponent<health>().TakeDmg(clap_dmg);
                 StopCoroutine(clapAttack());
             }
         }

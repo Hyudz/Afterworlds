@@ -43,7 +43,7 @@ public class health : MonoBehaviour
         if(sceneinfo.health <= 0)
         {
             //character_animation.SetBool("die", true);
-            this.enabled = false;
+            Destroy(this.gameObject);
             gameOverScreen.enabled = true;
             gameOver.gameIsOver = true;
             gameOver.Hide();

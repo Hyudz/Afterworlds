@@ -12,7 +12,6 @@ public class boss_movement : MonoBehaviour
     [SerializeField] public float movement_speed;
     private float currentPos = 1.0f;
     public boss_attack bossatk;
-    public boss_attack bossAtk;
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Character").transform;
@@ -21,11 +20,17 @@ public class boss_movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(PlayerInSight());
         //bossMovement.SetTrigger("willStomp");
-
         if (PlayerInSight() == false)
         {
-            transform.position = Vector2.MoveTowards(transform.position, player.position, 130 * Time.deltaTime);
+            try
+            {
+                transform.position = Vector2.MoveTowards(transform.position, player.position, 130 * Time.deltaTime);
+            } catch
+            {
+                //DO NOTHING OR STOP MOVING
+            }
         }
 
         bossMovement.SetBool("isWalking", currentPos != transform.position.x);
@@ -35,33 +40,36 @@ public class boss_movement : MonoBehaviour
         //enemy_animation.SetBool("walk", true);
 
         Vector3 scale = transform.localScale;
-        if (player.transform.position.x > transform.position.x)
+        try
         {
-            scale.x = Mathf.Abs(scale.x) * -1 * (flip ? -1 : 1);
+            if (player.transform.position.x > transform.position.x)
+            {
+                scale.x = Mathf.Abs(scale.x) * -1 * (flip ? -1 : 1);
+            }
+            else
+            {
+                scale.x = Mathf.Abs(scale.x) * (flip ? -1 : 1);
+
+            }
+            transform.localScale = scale;
+        } catch
+        {
+            //DO NOTHING
         }
-        else
-        { 
-            scale.x = Mathf.Abs(scale.x) * (flip ? -1 : 1);
-       
-        }
-        transform.localScale = scale;
     }
 
     public bool PlayerInSight()
     {
-        LayerMask layerMask = LayerMask.GetMask("MainCamera", "Enemy");
-        layerMask = ~layerMask;
+        LayerMask layerMask = LayerMask.GetMask("Character");
 
-        RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position, new Vector2(bossAtk.detectionWidth, bossAtk.detectionHeight), 0f, Vector2.zero, Mathf.Infinity, layerMask);
-
-        foreach (RaycastHit2D hit in hits)
+        RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position, new Vector2(bossatk.detectionWidth, bossatk.detectionHeight), 0f, Vector2.zero, Mathf.Infinity, layerMask);
+        Debug.Log(hits);
+        if (hits.Length > 0)
         {
-            if (hit.collider != null)
-            {
-
-            }
+            return true; // Player is in sight
         }
-        return hits.Length > 0;
+
+        return false;
     }
 
     public void willStomp()

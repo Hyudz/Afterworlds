@@ -18,6 +18,7 @@ public class sceneInfo : ScriptableObject
     public int current_aftercoins;
     public float boxWidth;
     public float boxHeight;
+    public string currentSkin;
 
     private void OnEnable()
     {
@@ -35,6 +36,7 @@ public class sceneInfo : ScriptableObject
         boxHeight = 57.4f;
         current_aftercoins = 0;
         aftercoins = 0;
+        currentSkin = "default";
 }
 
     public void retry()

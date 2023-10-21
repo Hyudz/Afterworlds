@@ -9,7 +9,7 @@ public class healthbar : MonoBehaviour
     public Slider slider;
     public Gradient gradient;
     public Image fill;
-    public TextMeshProUGUI healthIndicator;
+    //public TextMeshProUGUI healthIndicator;
     public sceneInfo sceneinfo;
 
     private void Update()
@@ -21,7 +21,7 @@ public class healthbar : MonoBehaviour
     public void SetmaxHealth()
     {
         slider.maxValue = sceneinfo.maxHealth;
-        healthIndicator.SetText(sceneinfo.health + "/" + sceneinfo.maxHealth);
+        //healthIndicator.SetText(sceneinfo.health + "/" + sceneinfo.maxHealth);
         slider.value = sceneinfo.health;
     }
 
@@ -29,6 +29,6 @@ public class healthbar : MonoBehaviour
     public void SetHealth()
     {
         slider.value = sceneinfo.health;
-        healthIndicator.SetText(sceneinfo.health + "/" + sceneinfo.maxHealth);
+        //healthIndicator.SetText(sceneinfo.health + "/" + sceneinfo.maxHealth);
     }
 }

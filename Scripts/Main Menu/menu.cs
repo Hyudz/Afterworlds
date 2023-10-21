@@ -26,6 +26,11 @@ public class menu : MonoBehaviour
         SceneManager.LoadScene("Forge");
     }
 
+    public void temporaryFunction()
+    {
+        SceneManager.LoadScene("Game Screen");
+    }
+
     public void ExitGame()
     {
         Application.Quit();
