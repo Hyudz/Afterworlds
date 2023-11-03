@@ -8,6 +8,8 @@ public class gameTimer : MonoBehaviour
 {
 
     [SerializeField] public float currentTime;
+    public sceneInfo sceneinfo;
+    public achievement achivementList;
     public TextMeshProUGUI currentTimeText;
     public int textTime;
     public bool startCount = false;
@@ -42,6 +44,8 @@ public class gameTimer : MonoBehaviour
     private bool in2Mins = false;
     private bool in1Mins = false;
     private bool in10secs = false;
+    public bool inMap1 = true;
+    public achievementDb dbHelper;
 
     // Update is called once per frame
 
@@ -53,15 +57,23 @@ public class gameTimer : MonoBehaviour
     {
         if (startCount == true && gameOver.gameIsOver != true)
         {
-            currentTime -= Time.deltaTime;
-            textTime = (int) currentTime;
+            sceneinfo.currentTime -= Time.deltaTime;
+            textTime = (int)sceneinfo.currentTime;
             countdown_bar.value(textTime);
             currentTimeText.SetText(textTime.ToString());
                 if (textTime <= 0)
                 {
+                sceneinfo.currentTime = 300;
                     SceneManager.LoadScene("Map 2");
-                    //ASCEND TO NEXT WORLD
-                }
+                sceneinfo.currentMap += 1;
+                    
+                    inMap1 = false;
+                    sceneinfo.current_aftercoins += 5;
+                    sceneinfo.currentBlueite += 1;
+
+                dbHelper.updateAchievement1();
+                //ASCEND TO NEXT WORLD
+            }
                 else if (textTime == 240 && in4Mins == false) // 4 mins
                 {
                 // add movement speed of each rat
@@ -69,6 +81,7 @@ public class gameTimer : MonoBehaviour
                     {
                         ratenem.movement_speed += 10.0f;
                     }
+                sceneinfo.current_aftercoins += 5;
 
                 in4Mins = true;
                 }
@@ -77,9 +90,10 @@ public class gameTimer : MonoBehaviour
                     //reduce the spawn interval
                     slime_spawner.spawnInterval -= 2;
                     mouth_spawner.spawnInterval -= 2;
+                sceneinfo.current_aftercoins += 5;
 
-                    //add hp to slime
-                    foreach (enemy_health slimehealth in slime_health)
+                //add hp to slime
+                foreach (enemy_health slimehealth in slime_health)
                     {
                         slimehealth.maxHealth += 2;
                     }
@@ -98,9 +112,10 @@ public class gameTimer : MonoBehaviour
                     //reduce the spawn interval
                     slime_spawner.spawnInterval -= 1;
                     mouth_spawner.spawnInterval -= 1;
+                sceneinfo.current_aftercoins += 5;
 
-                    //add health for rat
-                    foreach (enemy_health rathealth in rat_health)
+                //add health for rat
+                foreach (enemy_health rathealth in rat_health)
                     {
                         rathealth.maxHealth += 3;
                     }
@@ -125,9 +140,10 @@ public class gameTimer : MonoBehaviour
                     //reduce the spawn interval
                     slime_spawner.spawnInterval -= 2;
                     mouth_spawner.spawnInterval -= 2;
+                sceneinfo.current_aftercoins += 5;
 
-                    //reduce attack cooldown of rat
-                    foreach (enemy_atk ratCd in rat_atk)
+                //reduce attack cooldown of rat
+                foreach (enemy_atk ratCd in rat_atk)
                     {
                         ratCd.attackCooldown -= 2;
                     }

@@ -5,9 +5,12 @@ using UnityEngine;
 public class boss_health : MonoBehaviour
 {
     [SerializeField] public int maxHealth;
+    public achievement achievementCheck;
     private int currentHealth;
     public Canvas winner;
     public youwon win;
+    public sceneInfo sceneinfo;
+    public achievementDb dbHelper;
 
     // Start is called before the first frame update
     void Start()
@@ -25,9 +28,14 @@ public class boss_health : MonoBehaviour
             Boss_die();
         }
     }
-    private void Boss_die()
+    public void Boss_die()
     {
         Destroy(this.gameObject);
+        dbHelper.updateAchievement6();
+        achievementCheck.finished += 1;
+        dbHelper.updateFinishCount(achievementCheck.finished);
+        sceneinfo.currentGreenite += 1;
+
         GetComponent<Collider2D>().enabled = false;
         winner.enabled = true;
         win.hide();

@@ -27,12 +27,14 @@ public class attack : MonoBehaviour
     void Update()
     {
         cdTimer += Time.deltaTime;
- 
-        if (cdTimer > sceneinfo.attackCd && sceneinfo.health > 0)
-        {
-            Attack();
-            attackLimitCounter = 0;
-        }
+
+            if (cdTimer > sceneinfo.attackCd && sceneinfo.health > 0)
+            {
+                Attack();
+                attackLimitCounter = 0;
+            }
+            
+        
     }
 
     private void Attack()

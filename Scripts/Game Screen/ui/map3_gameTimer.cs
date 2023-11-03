@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class map3_gameTimer : MonoBehaviour
 {
-
     [SerializeField] public float currentTime;
     public TextMeshProUGUI currentTimeText;
     int textTime;
@@ -36,7 +35,8 @@ public class map3_gameTimer : MonoBehaviour
     private bool in2Mins = false;
     private bool in90Secs = false;
     private bool in1Min = false;
-    private bool bossFight = false;
+    public bool bossFight = false;
+    public sceneInfo sceneinfo;
 
     // Update is called once per frame
 
@@ -46,14 +46,18 @@ public class map3_gameTimer : MonoBehaviour
     }
     void Update()
     {
+        sceneinfo.currentTime = currentTime;
         if (startCount == true && gameOver.gameIsOver != true)
         {
+            sceneinfo.currentTime -= Time.deltaTime;
             currentTime -= Time.deltaTime;
-            textTime = (int) currentTime;
+            textTime = (int) sceneinfo.currentTime;
             countdown_bar.value(textTime);
             currentTimeText.SetText(textTime.ToString());
             if (currentTime <= 0 && bossFight == false)
             {
+                sceneinfo.current_aftercoins += 15;
+                sceneinfo.currentBlueite += 3;
                 boss.SetActive(true);
                 bossFight = true;   
             }
@@ -78,6 +82,7 @@ public class map3_gameTimer : MonoBehaviour
 
             else if (textTime == 120 && in2Mins == false) // 2 mins
             {
+                sceneinfo.current_aftercoins += 15;
                 //add attack range for each of the swordsman
                 foreach (enemy_atk swordsmanRange in swordsman_atk)
                 {
@@ -113,7 +118,7 @@ public class map3_gameTimer : MonoBehaviour
             }
             else if (textTime == 60 && in1Min == false)
             {
-
+                sceneinfo.current_aftercoins += 15;
                 //add movement speed for swordsman
                 foreach (enemy swordsmanSpd in swordsman_enem)
                 {

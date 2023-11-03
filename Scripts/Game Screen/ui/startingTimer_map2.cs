@@ -11,7 +11,8 @@ public class startingTimer_map2 : MonoBehaviour
     private float timer = 1.0f;
     int textTime;
     public map2_gameTimer gameTimer2;
-
+    public bool inCountdown = true;
+    public GameObject[] gameUI;
 
     public void Update()
     {
@@ -22,8 +23,26 @@ public class startingTimer_map2 : MonoBehaviour
 
         if (currentTime <= timer)
         {
-            gameTimer2.startCount = true;   
+            gameTimer2.startCount = true;
+            inCountdown = false;
             coundownTimer.enabled = false;
+            foreach (GameObject objects in gameUI)
+            {
+                try
+                {
+                    objects.SetActive(true);
+                } catch
+                {
+                    Debug.Log("Object is destroyed");
+                }
+            }
+        }
+        else
+        {
+            foreach (GameObject objects in gameUI)
+            {
+                objects.SetActive(false);
+            }
         }
     }
 

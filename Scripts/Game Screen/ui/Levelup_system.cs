@@ -37,6 +37,8 @@ public class Levelup_system : MonoBehaviour
     public Button buff1_btn;
     public Button buff2_btn;
     public Button buff3_btn;
+    public Image[] buffImages;
+    public Sprite[] buffSprites;
 
     int buff1, buff2, buff3;
     string chosen_buff1, chosen_buff2, chosen_buff3;
@@ -141,6 +143,7 @@ public class Levelup_system : MonoBehaviour
                 if (chosenBuffs.Contains(buffList[buff2]) == false)
                 {
                     chosenBuffs.Add(buffList[buff2]);
+
                     break;
                 }
             } 
@@ -161,9 +164,90 @@ public class Levelup_system : MonoBehaviour
                 if (chosenBuffs.Contains(buffList[buff3]) == false)
                 {
                     chosenBuffs.Add(buffList[buff3]);
+
+                    
                     break;
                 }
             } 
+        }
+
+        if (chosenBuffs[0] == "Movement Speed")
+        {
+            buffImages[0].sprite = buffSprites[0];
+        }
+        else if (chosenBuffs[0] == "HP increase")
+        {
+            buffImages[0].sprite = buffSprites[1];
+        }
+        else if (chosenBuffs[0] == "HP restoration")
+        {
+            buffImages[0].sprite = buffSprites[2];
+        }
+        else if (chosenBuffs[0] == "Additional Damage")
+        {
+            buffImages[0].sprite = buffSprites[3];
+        }
+        else if (chosenBuffs[0] == "Attack Speed")
+        {
+            buffImages[0].sprite = buffSprites[4];
+        }
+        else if (chosenBuffs[0] == "Increase cleaving range")
+        {
+            buffImages[0].sprite = buffSprites[5];
+        }
+
+        //BUTTON 2
+
+        if (chosenBuffs[1] == "Movement Speed")
+        {
+            buffImages[1].sprite = buffSprites[0];
+        }
+        else if (chosenBuffs[1] == "HP increase")
+        {
+            buffImages[1].sprite = buffSprites[1];
+        }
+        else if (chosenBuffs[1] == "HP restoration")
+        {
+            buffImages[1].sprite = buffSprites[2];
+        }
+        else if (chosenBuffs[1] == "Additional Damage")
+        {
+            buffImages[1].sprite = buffSprites[3];
+        }
+        else if (chosenBuffs[1] == "Attack Speed")
+        {
+            buffImages[1].sprite = buffSprites[4];
+        }
+        else if (chosenBuffs[1] == "Increase cleaving range")
+        {
+            buffImages[1].sprite = buffSprites[5];
+        }
+
+        //BUTTON 3
+
+        if (chosenBuffs[2] == "Movement Speed")
+        {
+            buffImages[2].sprite = buffSprites[0];
+        }
+        else if (chosenBuffs[2] == "HP increase")
+        {
+            buffImages[2].sprite = buffSprites[1];
+        }
+        else if (chosenBuffs[2] == "HP restoration")
+        {
+            buffImages[2].sprite = buffSprites[2];
+        }
+        else if (chosenBuffs[2] == "Additional Damage")
+        {
+            buffImages[2].sprite = buffSprites[3];
+        }
+        else if (chosenBuffs[2] == "Attack Speed")
+        {
+            buffImages[2].sprite = buffSprites[4];
+        }
+        else if (chosenBuffs[2] == "Increase cleaving range")
+        {
+            buffImages[2].sprite = buffSprites[5];
         }
 
         buff1_text.SetText(chosenBuffs[0]);
@@ -187,6 +271,16 @@ public class Levelup_system : MonoBehaviour
         UI.enabled = false;
         game_Timer.enabled = false;
         characterStats.enabled = false; 
+    }
+
+    public void Update()
+    {
+        Debug.Log("Hi");
+        for (int i=0; i >= chosenBuffs.Count; i++)
+        {
+            Debug.Log(chosenBuffs[i]);
+        }
+        
     }
 
 

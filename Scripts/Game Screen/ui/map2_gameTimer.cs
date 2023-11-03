@@ -43,6 +43,7 @@ public class map2_gameTimer : MonoBehaviour
     private bool in2Mins = false;
     private bool in1Min = false;
     private bool in10secs = false;
+    public sceneInfo sceneinfo;
 
     // Update is called once per frame
 
@@ -52,21 +53,27 @@ public class map2_gameTimer : MonoBehaviour
     }
     void Update()
     {
+        
         if (startCount == true && gameOver.gameIsOver != true)
         {
-            currentTime -= Time.deltaTime;
-            textTime = (int) currentTime;
+            sceneinfo.currentTime -= Time.deltaTime;
+            textTime = (int)sceneinfo.currentTime;
             countdown_bar.value(textTime);
             currentTimeText.SetText(textTime.ToString());
-                if (currentTime <= 0)
+                if (sceneinfo.currentTime <= 0)
                 {
-                    SceneManager.LoadScene("Map 3");
+                sceneinfo.currentTime = 180;
+                SceneManager.LoadScene("Map 3");
+                    sceneinfo.current_aftercoins += 10;
+                    sceneinfo.currentMap += 1;
+                    sceneinfo.currentBlueite += 1;
                     //ASCEND TO NEXT WORLD
                 }
                 else if (textTime == 240 && in4Mins == false) // 4 mins
                 {
                 in4Mins = true;
                 reducedInterval(2);
+                sceneinfo.current_aftercoins += 10;
 
                 //reduce attack cooldown for the deer
                 foreach (enemy_atk deerAtk in deer_atk)
@@ -86,6 +93,7 @@ public class map2_gameTimer : MonoBehaviour
                 {
                 in3Mins = true;
                 reducedInterval(2);
+                sceneinfo.current_aftercoins += 10;
 
                 //add attack range for the owl
                 foreach (enemy_atk owlRange in owl_atk)
@@ -104,6 +112,7 @@ public class map2_gameTimer : MonoBehaviour
                 {
                 in2Mins=true;
                 reducedInterval(2);
+                sceneinfo.current_aftercoins += 10;
                 //reduce the attack cooldown for the goblins
                 foreach (enemy_atk goblinAtk in goblin_atk)
                 {
@@ -118,7 +127,7 @@ public class map2_gameTimer : MonoBehaviour
             }
                 else if (textTime == 60 && in1Min == false) // 1 min
                 {
-
+                sceneinfo.current_aftercoins += 10;
                 //add movement speed for each deer
                 foreach (enemy deerSpd in deer_enem)
                 {

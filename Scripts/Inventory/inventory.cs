@@ -69,6 +69,11 @@ public class inventory : MonoBehaviour
             skinButtons[4].interactable = true;
         }
 
+        if (items.legendSkin == true)
+        {
+            skinButtons[5].interactable = true;
+        }
+
 
         orangeite_items.SetText("x"+items.orangeite_values);
         blueite_items.SetText("x" + items.blueite_values);
@@ -81,13 +86,11 @@ public class inventory : MonoBehaviour
         Debug.Log("Red");
         sceneInfo.currentSkin = "Common Skin 1";
     }
-
     public void equipSkin2()
     {
         Debug.Log("Blue");
         sceneInfo.currentSkin = "Common Skin 2";
     }
-
     public void equipSkin3()
     {
         Debug.Log("Green");
@@ -104,6 +107,11 @@ public class inventory : MonoBehaviour
     {
         Debug.Log("Orange");
         sceneInfo.currentSkin = "Epic Skin 2";
+    }
+
+    public void equipSkin6()
+    {
+        sceneInfo.currentSkin = "Legendary Skin";
     }
 
 }

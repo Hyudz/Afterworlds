@@ -11,6 +11,7 @@ public class enemy_atk : MonoBehaviour
     public Transform attackPoint;
     public float boxWidth;
     public float boxHeight;
+    public achievement achivementCheck;
 
     private Animator enemy_animation;
     private health character_health;
@@ -36,6 +37,7 @@ public class enemy_atk : MonoBehaviour
             }
         } */
 
+
         Collider2D[] hitCharacter = Physics2D.OverlapBoxAll(attackPoint.position, new Vector2(boxWidth, boxHeight), playerLayer);
 
         foreach (Collider2D character in hitCharacter)
@@ -45,6 +47,19 @@ public class enemy_atk : MonoBehaviour
                 {
                    cooldownTimer = 0.0f;
                    character.GetComponent<health>().TakeDmg(damage);
+                   try
+                    {
+                        if (name == "Enemy_ratv1(Clone)" || name == "Enemy_ratv2(Clone)" || name == "Enemy_ratv3(Clone)")
+                        {
+                            achivementCheck.finalHit = "Rat";
+                        } else
+                        {
+                            achivementCheck.finalHit = "";
+                        }
+                    } catch
+                    {
+                        //DO NOTHING
+                    }
                 }
             }
 

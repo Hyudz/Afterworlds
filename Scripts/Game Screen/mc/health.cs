@@ -11,11 +11,13 @@ public class health : MonoBehaviour
     public Canvas gameOverScreen;
     public Canvas levelUpScreen;
     public Levelup_system levelup;
+    public bool isDead = false;
     public gameOverScreen gameOver;
-
+    public inventoryForge items;
     public expBar expbar;
     public int currentLevel = 1;
-
+    private float cd = 30.0f;
+    private bool in30Secs = false;
     public sceneInfo sceneinfo;
     // Start is called before the first frame update
     void Start()
@@ -33,20 +35,51 @@ public class health : MonoBehaviour
         levelUpScreen.enabled = false;
     }
 
+    private void Update()
+    {
+        
+        if (sceneinfo.shield <= 0 && items.shield_tier != 0)
+        {
+            cd += Time.deltaTime;
+        } else if (cd >= 30 && in30Secs == false)
+        {
+            if (items.shield_tier == 1)
+            {
+                sceneinfo.shield += 1;
+            } else if (items.shield_tier == 2)
+            {
+                sceneinfo.shield += 2;
+            } else if (items.shield_tier == 3)
+            {
+                sceneinfo.shield += 4;
+            }
+            in30Secs = true;
+        }
+    }
+
     public void TakeDmg(int dmg)
     {
-        //currentHealth -= dmg;
-        sceneinfo.health -= dmg;
-        healthBar.SetHealth();
-        character_animation.SetTrigger("hurt");
-
-        if(sceneinfo.health <= 0)
+        if (sceneinfo.shield == 0)
         {
-            //character_animation.SetBool("die", true);
-            Destroy(this.gameObject);
-            gameOverScreen.enabled = true;
-            gameOver.gameIsOver = true;
-            gameOver.Hide();
+            //currentHealth -= dmg;
+            sceneinfo.health -= dmg;
+            healthBar.SetHealth();
+            character_animation.SetTrigger("hurt");
+
+            if (sceneinfo.health <= 0)
+            {
+                //character_animation.SetBool("die", true);
+                Destroy(this.gameObject);
+                isDead = true;
+                gameOverScreen.enabled = true;
+                gameOver.gameIsOver = true;
+                gameOver.Hide();
+            }
+        } else if (sceneinfo.shield <= 0 && cd >= 30)
+        {
+            sceneinfo.shield -= dmg;
+            cd = 0;
+            in30Secs = true;
         }
     }
 

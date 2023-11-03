@@ -11,7 +11,8 @@ public class startingTimer_map3 : MonoBehaviour
     private float timer = 1.0f;
     int textTime;
     public map3_gameTimer gameTimer3;
-
+    public bool inCountdown = true;
+    public GameObject[] gameUI;
 
     public void Update()
     {
@@ -25,6 +26,24 @@ public class startingTimer_map3 : MonoBehaviour
             gameTimer3.startCount = true;   
             coundownTimer.enabled = false;
             //OnEnable();
+            foreach (GameObject objects in gameUI)
+            {
+                try
+                {
+                    objects.SetActive(true);
+                }
+                catch
+                {
+                    Debug.Log("Object is destroyed");
+                }
+            }
+        }
+        else
+        {
+            foreach (GameObject objects in gameUI)
+            {
+                objects.SetActive(false);
+            }
         }
     }
 

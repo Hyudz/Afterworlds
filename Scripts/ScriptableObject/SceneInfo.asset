@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c8e2d3a3147010408dbcb306cf1fb0a, type: 3}
   m_Name: SceneInfo
   m_EditorClassIdentifier: 
-  movementSpeed: 230
-  health: 80
+  movementSpeed: 200
+  health: 20
   maxHealth: 20
   attackCd: 1
   attackRange: 26.2
@@ -21,7 +21,15 @@ MonoBehaviour:
   maxExp: 50
   atkDmg: 3
   atkLimit: 5
-  aftercoins: 7900
+  aftercoins: 0
   current_aftercoins: 0
   boxWidth: 47.8
   boxHeight: 57.4
+  currentSkin: default
+  currentBlueite: 0
+  currentGreenite: 0
+  currentMap: 1
+  currentButton: 1
+  currentTime: 300
+  currentMapStyle: pos
+  shield: 0

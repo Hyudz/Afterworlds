@@ -8,9 +8,11 @@ public class startingTimer : MonoBehaviour
 {
     public TextMeshProUGUI coundownTimer;
     private float currentTime = 4.0f;
+    public bool inCountdown = true;
     private float timer = 1.0f;
     int textTime;
     public gameTimer gameTimer;
+    public GameObject[] gameUI;
 
 
     public void Update()
@@ -24,7 +26,25 @@ public class startingTimer : MonoBehaviour
         {
             gameTimer.startCount = true;   
             coundownTimer.enabled = false;
+            inCountdown = false;
             //OnEnable();
+
+            foreach (GameObject objects in gameUI)
+            {
+                try
+                {
+                    objects.SetActive(true);
+                } catch
+                {
+                    Debug.Log("Object is disabled");
+                }
+            }
+        } else
+        {
+            foreach (GameObject objects in gameUI)
+            {
+                objects.SetActive(false);
+            }
         }
     }
 

@@ -12,6 +12,7 @@ public class character_movement : MonoBehaviour
     float vertical_movement;
     public Levelup_system levelup;
     public sceneInfo sceneinfo;
+    public bool isAFK = true;
 
     public void Start()
     {
@@ -36,11 +37,16 @@ public class character_movement : MonoBehaviour
         if (horizontal_movement > 0.01f)
         {
             transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, 1);
+            isAFK = false;
         }
         // Move left
         else if (horizontal_movement < -0.01f)
         {
             transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, 1);
+            isAFK = false;
+        } else
+        {
+            isAFK = true;
         }
     }
 }

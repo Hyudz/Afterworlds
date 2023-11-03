@@ -8,6 +8,8 @@ public class storeItems : MonoBehaviour
 
     public sceneInfo sceneinfo;
     public inventoryForge items;
+    public inventoryDb inventoryHelper;
+
     [Header("Boots Config")]
     public GameObject[] tiers;
     private int boots_tier = 0;
@@ -51,15 +53,11 @@ public class storeItems : MonoBehaviour
 
         if (sceneinfo.aftercoins >= purchaseCost1)
         {
-            purchase_btn1.SetActive(false);
-            upgrade_btn1.SetActive(true);
             sceneinfo.aftercoins -= purchaseCost1;
-
-            sceneinfo.movementSpeed += movement_add;
-            items.boots_tier += 1;
-        } else
-        {
-            Debug.Log("Not enough aftercoins");
+            inventoryHelper.updateCoins(sceneinfo.aftercoins);
+            //sceneinfo.movementSpeed += movement_add;
+            //items.boots_tier += 1;
+            inventoryHelper.updateBootsTier(1);
         }
     }
 
@@ -68,17 +66,18 @@ public class storeItems : MonoBehaviour
         if(sceneinfo.aftercoins >= upgradeCost1_tier2 && items.boots_tier == 1)
         { 
             sceneinfo.aftercoins -= upgradeCost1_tier2;
-            sceneinfo.movementSpeed += movement_add;
-            items.boots_tier += 1;
+            inventoryHelper.updateCoins(sceneinfo.aftercoins);
+            //sceneinfo.movementSpeed += movement_add;
+            inventoryHelper.updateBootsTier(2);
+            //items.boots_tier += 1;
         }
         else if (sceneinfo.aftercoins >= upgradeCost1_tier3 && items.boots_tier == 2)
         {
-
-            upgrade_btn1.SetActive(false);
-            max_btn1.SetActive(true);
             sceneinfo.aftercoins -= upgradeCost1_tier3;
-            sceneinfo.movementSpeed += movement_add;
-            items.boots_tier += 1;
+            inventoryHelper.updateCoins(sceneinfo.aftercoins);
+            //sceneinfo.movementSpeed += movement_add;
+            //items.boots_tier += 1;
+            inventoryHelper.updateBootsTier(3);
         } else
         {
             Debug.Log("Cant upgrade");
@@ -87,42 +86,51 @@ public class storeItems : MonoBehaviour
 
     public void buyArmor()
     {
-        purchase_btn2.SetActive(false);
-        upgrade_btn2.SetActive(true);
-        
-        armor_tier += 1;
-        sceneinfo.health += hp_add;
-        items.armor_tier += 1;
-        sceneinfo.aftercoins -= purchaseCost2;
+
+        if (sceneinfo.aftercoins >= purchaseCost2)
+        {
+            //sceneinfo.health += hp_add;
+            //items.armor_tier += 1;
+            inventoryHelper.updateArmorTier(1);
+            sceneinfo.aftercoins -= purchaseCost2;
+        }
+    
     }
 
     public void upgradeArmor()
     {
-
+        
          if (sceneinfo.aftercoins >= upgradeCost2_tier2 && items.armor_tier == 1)
         {
-            items.armor_tier += 1;
-            sceneinfo.health += hp_add;
+            //items.armor_tier += 1;
+            //sceneinfo.health += hp_add;
+            inventoryHelper.updateArmorTier(2);
             sceneinfo.aftercoins -= upgradeCost2_tier2;
+            inventoryHelper.updateCoins(sceneinfo.aftercoins);
         }
         else if (sceneinfo.aftercoins >= upgradeCost2_tier3 && items.armor_tier == 2)
         {
-            items.armor_tier += 1;
+            //items.armor_tier += 1;
             sceneinfo.health += hp_add;
             sceneinfo.aftercoins -= upgradeCost2_tier3;
-
-            upgrade_btn2.SetActive(false);
-            max_btn2.SetActive(true);
+            inventoryHelper.updateArmorTier(3);
+            inventoryHelper.updateCoins(sceneinfo.aftercoins);
         }
+        Debug.Log(items.armor_tier == 3);
+       
+         
        
     }
     public void buyShield()
     {
-        purchase_btn3.SetActive(false);
-        upgrade_btn3.SetActive(true);
 
-        items.shield_tier += 1;
-        sceneinfo.aftercoins -= purchaseCost3;
+        if (sceneinfo.aftercoins >= purchaseCost3)
+        {
+            //items.shield_tier += 1;
+            sceneinfo.aftercoins -= purchaseCost3;
+            inventoryHelper.updateCoins(sceneinfo.aftercoins);
+            inventoryHelper.updateShieldTier(1);
+        }
     }
 
     public void upgradeShield()
@@ -130,16 +138,17 @@ public class storeItems : MonoBehaviour
        
        if (sceneinfo.aftercoins >= upgradeCost2_tier2 && items.shield_tier == 1)
         {
-            items.shield_tier += 1;
+            //items.shield_tier += 1;
             sceneinfo.aftercoins -= upgradeCost3_tier2;
+            inventoryHelper.updateCoins(sceneinfo.aftercoins);
+            inventoryHelper.updateShieldTier(2);
         }
         else if (sceneinfo.aftercoins >= upgradeCost2_tier2 && items.shield_tier == 2)
         {
-            items.shield_tier += 1;
-
-            upgrade_btn3.SetActive(false);
-            max_btn3.SetActive(true);
+            //items.shield_tier += 1;
             sceneinfo.aftercoins -= upgradeCost3_tier3;
+            inventoryHelper.updateCoins(sceneinfo.aftercoins);
+            inventoryHelper.updateShieldTier(3);
         }
     }
 
@@ -147,18 +156,41 @@ public class storeItems : MonoBehaviour
     {
         if (sceneinfo.aftercoins >= orangeite_price)
         {
-            items.orangeite_values += 1;
+            //items.orangeite_values += 1;
+            inventoryHelper.updateOrangeite(items.orangeite_values += 1);
             sceneinfo.aftercoins -= orangeite_price;
+            inventoryHelper.updateCoins(sceneinfo.aftercoins);
         }
     }
 
     public void Update()
     {
+        //BOOTS TIER ---------------------------------------------------------------------
+
         if (items.boots_tier != 0)
         {
             tiers[items.boots_tier -1].SetActive(false);
             tiers[items.boots_tier].SetActive(true);
         }
+
+        if(items.boots_tier == 0)
+        {
+            purchase_btn1.SetActive(true);
+        }
+        else if (items.boots_tier == 1 || items.boots_tier == 2)
+        {
+            purchase_btn1.SetActive(false);
+            upgrade_btn1.SetActive(true);
+        }
+        else if (items.boots_tier == 3)
+        {
+
+            purchase_btn1.SetActive(false);
+            upgrade_btn1.SetActive(false);
+            max_btn1.SetActive(true);
+        }
+
+        //ARMOR TIER ---------------------------------------------------------------------
 
         if (items.armor_tier != 0)
         {
@@ -166,10 +198,45 @@ public class storeItems : MonoBehaviour
             armor_tiers[items.armor_tier].SetActive(true);
         }
 
+        if (items.armor_tier == 0)
+        {
+            purchase_btn2.SetActive(true);
+        }
+        else if (items.armor_tier == 1 || items.armor_tier == 2)
+        {
+            purchase_btn2.SetActive(false);
+            upgrade_btn2.SetActive(true);
+        } else if (items.armor_tier == 3)
+        {
+            
+            purchase_btn2.SetActive(false);
+            upgrade_btn2.SetActive(false);
+            max_btn2.SetActive(true);
+        }
+
+        //SHIELD TIER ---------------------------------------------------------------------
+
         if (items.shield_tier != 0)
         {
             shield_tiers[items.shield_tier -1].SetActive(false);
             shield_tiers[items.shield_tier].SetActive(true);
+        }
+
+        if(items.shield_tier == 0)
+        {
+            purchase_btn3.SetActive(true);
+        }
+        else if (items.shield_tier == 1 || items.shield_tier == 2)
+        {
+            purchase_btn3.SetActive(false);
+            upgrade_btn3.SetActive(true);
+        }
+        else if (items.shield_tier == 3)
+        {
+
+            purchase_btn3.SetActive(false);
+            upgrade_btn3.SetActive(false);
+            max_btn3.SetActive(true);
         }
     }
 }

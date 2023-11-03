@@ -19,6 +19,13 @@ public class sceneInfo : ScriptableObject
     public float boxWidth;
     public float boxHeight;
     public string currentSkin;
+    public int currentBlueite;
+    public int currentGreenite;
+    public int currentMap;
+    public int currentButton = 1;
+    public float currentTime;
+    public string currentMapStyle;
+    public int shield;
 
     private void OnEnable()
     {
@@ -37,6 +44,13 @@ public class sceneInfo : ScriptableObject
         current_aftercoins = 0;
         aftercoins = 0;
         currentSkin = "default";
+        currentTime = 300;
+        currentBlueite = 0;
+        currentGreenite = 0;
+        currentMap = 1;
+        currentButton = 1;
+        currentMapStyle = "pos";
+        shield = 0;
 }
 
     public void retry()
@@ -54,5 +68,10 @@ public class sceneInfo : ScriptableObject
         boxWidth = 47.8f;
         boxHeight = 57.4f;
         current_aftercoins = 0;
+        currentBlueite = 0;
+        currentGreenite = 0;
+        currentMap = 1;
+        currentTime = 300;
+        currentMapStyle = "pos";
     }
 }

@@ -15,7 +15,7 @@ public class healthbar : MonoBehaviour
     private void Update()
     {
         //fill.color = gradient.Evaluate(1f);
-        fill.color = gradient.Evaluate(slider.normalizedValue);
+        //fill.color = gradient.Evaluate(slider.normalizedValue);
     }
 
     public void SetmaxHealth()

@@ -16,6 +16,7 @@ public class inventoryForge : ScriptableObject
     public bool blueSkin = false;
     public bool thunderSkin = false;
     public bool voidSkin = false;
+    public bool legendSkin = false;
 
     private void OnEnable()
     {
@@ -30,5 +31,6 @@ public class inventoryForge : ScriptableObject
         blueSkin = false;
         thunderSkin = false;
         voidSkin = false;
+        legendSkin = false;
 }
 }

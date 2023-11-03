@@ -9,7 +9,7 @@ public class enemy_health : MonoBehaviour
     private Animator enemy_animation;
     [SerializeField] public int addedExp;
     public sceneInfo sceneinfo;
-    [SerializeField] public int addedAftercoins;
+    public achieve achivementCheck;
 
     private void Start()
     {
@@ -31,7 +31,7 @@ public class enemy_health : MonoBehaviour
 
     public void Die()
     {
-        sceneinfo.current_aftercoins += addedAftercoins;
+        achivementCheck.killCount();
         enemy_animation.SetBool("isDead", true);
         new WaitForSeconds(2);
         Destroy(this.gameObject);

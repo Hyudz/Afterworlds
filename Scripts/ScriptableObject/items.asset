@@ -15,11 +15,12 @@ MonoBehaviour:
   orangeite_values: 0
   blueite_values: 0
   greenite_values: 0
-  boots_tier: 0
-  armor_tier: 0
-  shield_tier: 0
+  boots_tier: 3
+  armor_tier: 3
+  shield_tier: 3
   redSkin: 0
   yellowSkin: 0
   blueSkin: 0
   thunderSkin: 0
   voidSkin: 0
+  legendSkin: 0
