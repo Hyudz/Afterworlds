@@ -26,7 +26,7 @@ public class pauseButton : MonoBehaviour
         db.updateCoins(sceneinfo.currentButton, sceneinfo.current_aftercoins);
         db.updateBlueite(sceneinfo.currentButton, sceneinfo.currentBlueite);
         db.updateGreenite(sceneinfo.currentButton, sceneinfo.currentGreenite);
-
+        db.updateScaleSize(sceneinfo.currentButton, sceneinfo.scaleSize.x);
         //clear earned rewards
         sceneinfo.current_aftercoins = 0;
         sceneinfo.currentBlueite = 0;

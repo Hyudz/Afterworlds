@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +10,7 @@ public class storeItems : MonoBehaviour
     public sceneInfo sceneinfo;
     public inventoryForge items;
     public inventoryDb inventoryHelper;
+    public GameObject[] store_items;
 
     [Header("Boots Config")]
     public GameObject[] tiers;
@@ -20,6 +22,7 @@ public class storeItems : MonoBehaviour
     public int upgradeCost1_tier2;
     public int upgradeCost1_tier3;
     public float movement_add;
+    public TextMeshProUGUI bootsPrice;
 
     [Header("Armor Config")]
     public GameObject[] armor_tiers;
@@ -31,6 +34,7 @@ public class storeItems : MonoBehaviour
     public int upgradeCost2_tier2;
     public int upgradeCost2_tier3;
     public int hp_add;
+    public TextMeshProUGUI armorPrice;
 
     [Header("Shield Config")]
     public GameObject[] shield_tiers;
@@ -44,9 +48,62 @@ public class storeItems : MonoBehaviour
     public int negate_tier1;
     public int negate_tier2;
     public int negate_tier3;
+    public TextMeshProUGUI shieldPrice;
 
     [Header("Materials Config")]
     public int orangeite_price;
+
+    private void Start()
+    {
+        if (items.boots_tier == 0)
+        {
+            bootsPrice.SetText(purchaseCost1.ToString());
+        } else if (items.boots_tier == 1)
+        {
+            bootsPrice.SetText(upgradeCost1_tier2.ToString());
+        }
+        else if (items.boots_tier == 2)
+        {
+            bootsPrice.SetText(upgradeCost1_tier3.ToString());
+        } else
+        {
+            store_items[0].SetActive(false);
+        }
+
+        if (items.armor_tier == 0)
+        {
+            armorPrice.SetText(purchaseCost2.ToString());
+        }
+        else if (items.armor_tier == 1)
+        {
+            armorPrice.SetText(upgradeCost2_tier2.ToString());
+        }
+        else if (items.armor_tier == 2)
+        {
+            armorPrice.SetText(upgradeCost2_tier3.ToString());
+        }
+        else
+        {
+            store_items[1].SetActive(false);
+        }
+
+        if (items.shield_tier == 0)
+        {
+            shieldPrice.SetText(purchaseCost3.ToString());
+        }
+        else if (items.shield_tier == 1)
+        {
+            shieldPrice.SetText(upgradeCost3_tier2.ToString());
+        }
+        else if (items.shield_tier == 2)
+        {
+            shieldPrice.SetText(upgradeCost3_tier3.ToString());
+        }
+        else
+        {
+            store_items[2].SetActive(false);
+        }
+    }
 
     public void buyBoots()
     {
@@ -58,13 +115,15 @@ public class storeItems : MonoBehaviour
             //sceneinfo.movementSpeed += movement_add;
             //items.boots_tier += 1;
             inventoryHelper.updateBootsTier(1);
+            bootsPrice.SetText(upgradeCost1_tier2.ToString());
         }
     }
 
     public void upgradeBoots()
     {
         if(sceneinfo.aftercoins >= upgradeCost1_tier2 && items.boots_tier == 1)
-        { 
+        {
+            bootsPrice.SetText(upgradeCost1_tier3.ToString());
             sceneinfo.aftercoins -= upgradeCost1_tier2;
             inventoryHelper.updateCoins(sceneinfo.aftercoins);
             //sceneinfo.movementSpeed += movement_add;
@@ -78,9 +137,7 @@ public class storeItems : MonoBehaviour
             //sceneinfo.movementSpeed += movement_add;
             //items.boots_tier += 1;
             inventoryHelper.updateBootsTier(3);
-        } else
-        {
-            Debug.Log("Cant upgrade");
+            store_items[0].SetActive(false);
         }
     }
 
@@ -89,6 +146,7 @@ public class storeItems : MonoBehaviour
 
         if (sceneinfo.aftercoins >= purchaseCost2)
         {
+            armorPrice.SetText(upgradeCost1_tier2.ToString());
             //sceneinfo.health += hp_add;
             //items.armor_tier += 1;
             inventoryHelper.updateArmorTier(1);
@@ -102,6 +160,7 @@ public class storeItems : MonoBehaviour
         
          if (sceneinfo.aftercoins >= upgradeCost2_tier2 && items.armor_tier == 1)
         {
+            armorPrice.SetText(upgradeCost1_tier3.ToString());
             //items.armor_tier += 1;
             //sceneinfo.health += hp_add;
             inventoryHelper.updateArmorTier(2);
@@ -115,6 +174,7 @@ public class storeItems : MonoBehaviour
             sceneinfo.aftercoins -= upgradeCost2_tier3;
             inventoryHelper.updateArmorTier(3);
             inventoryHelper.updateCoins(sceneinfo.aftercoins);
+            store_items[1].SetActive(false);
         }
         Debug.Log(items.armor_tier == 3);
        
@@ -126,6 +186,7 @@ public class storeItems : MonoBehaviour
 
         if (sceneinfo.aftercoins >= purchaseCost3)
         {
+            shieldPrice.SetText(upgradeCost3_tier2.ToString());
             //items.shield_tier += 1;
             sceneinfo.aftercoins -= purchaseCost3;
             inventoryHelper.updateCoins(sceneinfo.aftercoins);
@@ -138,6 +199,7 @@ public class storeItems : MonoBehaviour
        
        if (sceneinfo.aftercoins >= upgradeCost2_tier2 && items.shield_tier == 1)
         {
+            shieldPrice.SetText(upgradeCost3_tier3.ToString());
             //items.shield_tier += 1;
             sceneinfo.aftercoins -= upgradeCost3_tier2;
             inventoryHelper.updateCoins(sceneinfo.aftercoins);
@@ -149,6 +211,7 @@ public class storeItems : MonoBehaviour
             sceneinfo.aftercoins -= upgradeCost3_tier3;
             inventoryHelper.updateCoins(sceneinfo.aftercoins);
             inventoryHelper.updateShieldTier(3);
+            store_items[2].SetActive(false);
         }
     }
 

@@ -34,32 +34,13 @@ public class achievementDb : MonoBehaviour
 
         dbConnection.Close();
         readKillCount();
+        ReadAtOnce();
         readWeaponCount();
         readFinishCount();
+        
     }
 
     //ACHIEVEMNET 1====================================================================================
-
-    public void Update()
-    {
-        
-        time += Time.deltaTime;
-
-        if (time >= 5.0f)
-        {
-            readAchievement1(); readAchievement7();
-            readAchievement2(); readAchievement8();
-            readAchievement3(); readAchievement9();
-            readAchievement4(); readAchievement10();
-            readAchievement5(); readAchievement11();
-            readAchievement6(); readAchievement12();
-            readKillCount();
-            readWeaponCount();
-            readFinishCount();
-
-            time = 0;
-        }
-    }
 
     public void updateAchievement1()
     {
@@ -609,6 +590,107 @@ public class achievementDb : MonoBehaviour
         reader.Close();
         dbConnection.Close();
     }
+
+    public void ReadAtOnce()
+    {
+        string connection = "URI=file:" + Application.persistentDataPath + "/userData.db";
+
+        using (IDbConnection dbConnection = new SqliteConnection(connection))
+        {
+            dbConnection.Open();
+
+            using (IDbCommand dbCommand = dbConnection.CreateCommand())
+            {
+                try
+                {
+                    dbCommand.CommandText = "SELECT achievement1, achievement2,achievement3,achievement4,achievement5,achievement6,achievement7,achievement8,achievement9,achievement10,achievement11,achievement12 FROM achievements;";
+                    using (IDataReader reader = dbCommand.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string achievement1Value = reader.GetString(reader.GetOrdinal("achievement1"));
+                            string achievement2Value = reader.GetString(reader.GetOrdinal("achievement2"));
+                            string achievement3Value = reader.GetString(reader.GetOrdinal("achievement3"));
+                            string achievement4Value = reader.GetString(reader.GetOrdinal("achievement4"));
+                            string achievement5Value = reader.GetString(reader.GetOrdinal("achievement5"));
+                            string achievement6Value = reader.GetString(reader.GetOrdinal("achievement6"));
+                            string achievement7Value = reader.GetString(reader.GetOrdinal("achievement7"));
+                            string achievement8Value = reader.GetString(reader.GetOrdinal("achievement8"));
+                            string achievement9Value = reader.GetString(reader.GetOrdinal("achievement9"));
+                            string achievement10Value = reader.GetString(reader.GetOrdinal("achievement10"));
+                            string achievement11Value = reader.GetString(reader.GetOrdinal("achievement11"));
+                            string achievement12Value = reader.GetString(reader.GetOrdinal("achievement12"));
+
+                            if (achievement1Value == "true")
+                            {
+                                achievementHelper.achivement1 = true;
+                            }
+
+                            if (achievement2Value == "true")
+                            {
+                                achievementHelper.achivement2 = true;
+                            }
+
+                            if (achievement3Value == "true")
+                            {
+                                achievementHelper.achivement3 = true;
+                            }
+
+                            if (achievement4Value == "true")
+                            {
+                                achievementHelper.achivement4 = true;
+                            }
+
+                            if (achievement5Value == "true")
+                            {
+                                achievementHelper.achivement5 = true;
+                            }
+
+                            if (achievement6Value == "true")
+                            {
+                                achievementHelper.achivement6 = true;
+                            }
+
+                            if (achievement7Value == "true")
+                            {
+                                achievementHelper.achivement7 = true;
+                            }
+
+                            if (achievement8Value == "true")
+                            {
+                                achievementHelper.achivement8 = true;
+                            }
+
+                            if (achievement9Value == "true")
+                            {
+                                achievementHelper.achivement9 = true;
+                            }
+
+                            if (achievement10Value == "true")
+                            {
+                                achievementHelper.achivement10 = true;
+                            }
+
+                            if (achievement11Value == "true")
+                            {
+                                achievementHelper.achivement11 = true;
+                            }
+
+                            if (achievement12Value == "true")
+                            {
+                                achievementHelper.achivement12 = true;
+                            }
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError(e);
+                }
+            }
+        }
+    }
+
 
 
 }

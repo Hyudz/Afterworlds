@@ -17,8 +17,10 @@ public class health : MonoBehaviour
     public expBar expbar;
     public int currentLevel = 1;
     private float cd = 30.0f;
-    private bool in30Secs = false;
     public sceneInfo sceneinfo;
+
+    public float schieldCd = 30.0f;
+    public bool inCooldown;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,51 +37,54 @@ public class health : MonoBehaviour
         levelUpScreen.enabled = false;
     }
 
-    private void Update()
-    {
-        
-        if (sceneinfo.shield <= 0 && items.shield_tier != 0)
-        {
-            cd += Time.deltaTime;
-        } else if (cd >= 30 && in30Secs == false)
-        {
-            if (items.shield_tier == 1)
-            {
-                sceneinfo.shield += 1;
-            } else if (items.shield_tier == 2)
-            {
-                sceneinfo.shield += 2;
-            } else if (items.shield_tier == 3)
-            {
-                sceneinfo.shield += 4;
-            }
-            in30Secs = true;
-        }
-    }
 
     public void TakeDmg(int dmg)
     {
-        if (sceneinfo.shield == 0)
+        if (inCooldown == false)
         {
-            //currentHealth -= dmg;
+            if (items.shield_tier == 1)
+            {
+                dmg -= 1;
+            } else if (items.shield_tier == 2)
+            {
+                dmg -= 2;
+            } else if (items.shield_tier == 3)
+            {
+                dmg -= 4;
+            }
+            inCooldown = true;
+        } else
+        {
             sceneinfo.health -= dmg;
             healthBar.SetHealth();
             character_animation.SetTrigger("hurt");
 
             if (sceneinfo.health <= 0)
             {
-                //character_animation.SetBool("die", true);
-                Destroy(this.gameObject);
+                Destroy(gameObject);
                 isDead = true;
                 gameOverScreen.enabled = true;
                 gameOver.gameIsOver = true;
                 gameOver.Hide();
             }
-        } else if (sceneinfo.shield <= 0 && cd >= 30)
+        }
+
+       
+
+    }
+
+    public void Update()
+    {
+        
+        if (inCooldown == true)
         {
-            sceneinfo.shield -= dmg;
-            cd = 0;
-            in30Secs = true;
+            schieldCd -= Time.deltaTime;
+
+            if (schieldCd <= 0)
+            {
+                inCooldown = false;
+                schieldCd = 30.0f;
+            }
         }
     }
 

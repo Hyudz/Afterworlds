@@ -26,6 +26,7 @@ public class sceneInfo : ScriptableObject
     public float currentTime;
     public string currentMapStyle;
     public int shield;
+    public Vector3 scaleSize;
 
     private void OnEnable()
     {
@@ -51,6 +52,7 @@ public class sceneInfo : ScriptableObject
         currentButton = 1;
         currentMapStyle = "pos";
         shield = 0;
+        scaleSize = new Vector3(1.5f, 1.5f, 1.5f);
 }
 
     public void retry()
@@ -73,5 +75,6 @@ public class sceneInfo : ScriptableObject
         currentMap = 1;
         currentTime = 300;
         currentMapStyle = "pos";
+        scaleSize = new Vector3(1.5f, 1.5f, 1.5f);
     }
 }

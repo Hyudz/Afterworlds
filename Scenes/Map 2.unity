@@ -5686,12 +5686,13 @@ MonoBehaviour:
   damage: 2
   limit: 2
   attackRange: 5.1
-  boxWidth: 5
-  boxHeight: 5
+  boxWidth: 20
+  boxHeight: 20
   player_health: {fileID: 4428080553055684951}
   levelupSystem: {fileID: 2594860845732514866}
   meleeAnim: {fileID: 2064356612070144420}
   sceneinfo: {fileID: 11400000, guid: 1d31201eb56e0ec498f4493babfa643a, type: 2}
+  meleeSize: {fileID: 0}
   UI: {fileID: 9058198656212728996}
   game_Timer: {fileID: 3769002019578772020}
   characterStats: {fileID: 3483976788934557004}
@@ -20402,6 +20403,7 @@ MonoBehaviour:
     m_Bits: 256
   fireBalls: {fileID: 6621852682536339383}
   sceneinfo: {fileID: 11400000, guid: 1d31201eb56e0ec498f4493babfa643a, type: 2}
+  meleeSize: {fileID: 3590201498909426680}
 --- !u!4 &6818897234313036861
 Transform:
   m_ObjectHideFlags: 0

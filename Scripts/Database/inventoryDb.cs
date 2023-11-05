@@ -564,7 +564,6 @@ public class inventoryDb : MonoBehaviour
 
     public void updateCoins(int newValue)
     {
-        Debug.Log("I am updated");
         IDbConnection dbConnection = new SqliteConnection(connection);
         dbConnection.Open();
         IDbCommand dbCommand = dbConnection.CreateCommand();

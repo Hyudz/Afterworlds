@@ -55627,7 +55627,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &2004482906210293245
 GameObject:
   m_ObjectHideFlags: 0
@@ -56721,12 +56721,13 @@ MonoBehaviour:
   damage: 2
   limit: 2
   attackRange: 5.1
-  boxWidth: 5
-  boxHeight: 5
+  boxWidth: 20
+  boxHeight: 20
   player_health: {fileID: 4428080553055684951}
   levelupSystem: {fileID: 4318742316479142796}
   meleeAnim: {fileID: 5079834592167088551}
   sceneinfo: {fileID: 11400000, guid: 1d31201eb56e0ec498f4493babfa643a, type: 2}
+  meleeSize: {fileID: 0}
   UI: {fileID: 9058198656212728996}
   game_Timer: {fileID: 3769002019578772020}
   characterStats: {fileID: 8472041132159363465}
@@ -63046,6 +63047,7 @@ MonoBehaviour:
     m_Bits: 1280
   fireBalls: {fileID: 6621852682536339383}
   sceneinfo: {fileID: 11400000, guid: 1d31201eb56e0ec498f4493babfa643a, type: 2}
+  meleeSize: {fileID: 8282789825540913153}
 --- !u!114 &6838106097700016513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65606,7 +65608,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dd59eadcfbada94b937ea3d8bbaec7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentTime: 20
+  currentTime: 180
   currentTimeText: {fileID: 2724934810011097131}
   startCount: 0
   gameOver: {fileID: 435447269744456773}

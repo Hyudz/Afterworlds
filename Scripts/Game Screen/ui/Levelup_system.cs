@@ -22,6 +22,7 @@ public class Levelup_system : MonoBehaviour
     public Canvas levelupSystem;
     public melee meleeAnim;
     public sceneInfo sceneinfo;
+    public GameObject meleeSize;
 
     [Header("UI References")]
     public Canvas UI;
@@ -87,6 +88,12 @@ public class Levelup_system : MonoBehaviour
             sceneinfo.atkLimit += limit;
             sceneinfo.boxWidth += boxWidth;
             sceneinfo.boxHeight += boxHeight;
+            Vector3 scaleChange;
+
+            scaleChange = new Vector3(0.5f, 0.5f,0.5f);
+            meleeSize.transform.localScale += scaleChange;
+            sceneinfo.scaleSize += scaleChange;
+            Debug.Log("Im cute");
         } else
         {
             Debug.Log("NO BUFF WAS APPLIED");

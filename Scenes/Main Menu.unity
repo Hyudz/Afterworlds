@@ -11802,18 +11802,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1126669778}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
 --- !u!114 &1766153921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12905,6 +12893,7 @@ GameObject:
   - component: {fileID: 6686453023814836158}
   - component: {fileID: 4568706212312164302}
   - component: {fileID: 6686453023814836159}
+  - component: {fileID: 6686453023814836160}
   m_Layer: 0
   m_Name: DB HELPER
   m_TagString: Untagged
@@ -13136,6 +13125,20 @@ MonoBehaviour:
   items: {fileID: 11400000, guid: 4634e71d4f158cb469e5cab99ca0131c, type: 2}
   sceneinfo: {fileID: 11400000, guid: 1d31201eb56e0ec498f4493babfa643a, type: 2}
   gameHelper: {fileID: 4568706212312164302}
+--- !u!114 &6686453023814836160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 969689408189420953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ba9a7108566333489a7e6c891195ac3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  connection: 
+  achievementHelper: {fileID: 11400000, guid: f467666f44b8d1640ab7d01ba7f2212c, type: 2}
 --- !u!224 &6718886007297160660
 RectTransform:
   m_ObjectHideFlags: 0
