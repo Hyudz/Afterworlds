@@ -4466,8 +4466,8 @@ MonoBehaviour:
   damage: 2
   limit: 2
   attackRange: 5.1
-  boxWidth: 20
-  boxHeight: 20
+  boxWidth: 15
+  boxHeight: 15
   player_health: {fileID: 4428080553055684951}
   levelupSystem: {fileID: 3613453036250532977}
   meleeAnim: {fileID: 5079834592167088551}
@@ -54091,6 +54091,9 @@ MonoBehaviour:
   expbar: {fileID: 7816760928520846510}
   currentLevel: 1
   sceneinfo: {fileID: 11400000, guid: 1d31201eb56e0ec498f4493babfa643a, type: 2}
+  shieldd: 0
+  schieldCd: 30
+  inCooldown: 0
 --- !u!1 &4434196995407728419
 GameObject:
   m_ObjectHideFlags: 0
@@ -65267,6 +65270,9 @@ MonoBehaviour:
   fireBalls: {fileID: 0}
   sceneinfo: {fileID: 11400000, guid: 1d31201eb56e0ec498f4493babfa643a, type: 2}
   meleeSize: {fileID: 8282789825540913153}
+  timer: {fileID: 8692216416806546957}
+  timer2: {fileID: 0}
+  timer3: {fileID: 0}
 --- !u!1 &6847585159130961771
 GameObject:
   m_ObjectHideFlags: 0

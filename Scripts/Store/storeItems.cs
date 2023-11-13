@@ -14,7 +14,6 @@ public class storeItems : MonoBehaviour
 
     [Header("Boots Config")]
     public GameObject[] tiers;
-    private int boots_tier = 0;
     public GameObject purchase_btn1;
     public GameObject upgrade_btn1;
     public GameObject max_btn1;
@@ -26,7 +25,6 @@ public class storeItems : MonoBehaviour
 
     [Header("Armor Config")]
     public GameObject[] armor_tiers;
-    private int armor_tier = 0;
     public GameObject purchase_btn2;
     public GameObject upgrade_btn2;
     public GameObject max_btn2;
@@ -38,7 +36,6 @@ public class storeItems : MonoBehaviour
 
     [Header("Shield Config")]
     public GameObject[] shield_tiers;
-    private int shield_tier = 0;
     public GameObject purchase_btn3;
     public GameObject upgrade_btn3;
     public GameObject max_btn3;

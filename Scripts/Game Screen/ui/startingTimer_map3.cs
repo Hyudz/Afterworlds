@@ -24,6 +24,7 @@ public class startingTimer_map3 : MonoBehaviour
         if (currentTime <= timer)
         {
             gameTimer3.startCount = true;   
+            inCountdown = false;
             coundownTimer.enabled = false;
             //OnEnable();
             foreach (GameObject objects in gameUI)

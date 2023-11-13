@@ -14,6 +14,9 @@ public class attack : MonoBehaviour
     private int attackLimitCounter;
     public sceneInfo sceneinfo;
     public GameObject meleeSize;
+    public startingTimer timer;
+    public startingTimer_map2 timer2;
+    public startingTimer_map3 timer3;
 
     //[Header("Targetable Enemy")]
 
@@ -25,22 +28,46 @@ public class attack : MonoBehaviour
         meleeSize.transform.localScale = sceneinfo.scaleSize;
     }
 
+    public void attackCall()
+    {
+        if (cdTimer > sceneinfo.attackCd && sceneinfo.health > 0)
+        {
+            Attack();
+            attackLimitCounter = 0;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
         cdTimer += Time.deltaTime;
-
-            if (cdTimer > sceneinfo.attackCd && sceneinfo.health > 0)
+        if (timer != null ) { 
+            if (timer.inCountdown == false)
             {
-                Attack();
-                attackLimitCounter = 0;
+                attackCall();
             }
+        } else if (timer2 != null )
+        {
+            if (timer2.inCountdown == false)
+            {
+                attackCall();
+            }
+        }
+        else if (timer3 != null)
+        {
+            if (timer3.inCountdown == false)
+            {
+                attackCall();
+            }
+        }
+
     }
 
     private void Attack()
     {
         //anim.SetTrigger("attack_melee");
         cdTimer = 0;
+        Debug.Log("Hi");
 
         /*Arguments: 
          * attackPoint - center point

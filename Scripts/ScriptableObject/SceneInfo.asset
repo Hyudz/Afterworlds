@@ -12,24 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c8e2d3a3147010408dbcb306cf1fb0a, type: 3}
   m_Name: SceneInfo
   m_EditorClassIdentifier: 
-  movementSpeed: 230
-  health: 28
+  movementSpeed: 200
+  health: 14
   maxHealth: 20
-  attackCd: 0.6999999
+  attackCd: 1
   attackRange: 26.2
-  currentExp: 30
-  maxExp: 350
-  atkDmg: 7
-  atkLimit: 11
-  aftercoins: 75
+  currentExp: 0
+  maxExp: 50
+  atkDmg: 3
+  atkLimit: 5
+  aftercoins: 1200
   current_aftercoins: 0
-  boxWidth: 62.8
-  boxHeight: 72.4
+  boxWidth: 47.8
+  boxHeight: 57.4
   currentSkin: default
   currentBlueite: 0
   currentGreenite: 0
   currentMap: 1
   currentButton: 1
-  currentTime: 2.0392268
+  currentTime: 165.66283
   currentMapStyle: pos
-  shield: 0
+  shield: 1
+  scaleSize: {x: 1.5, y: 1.5, z: 1.5}

@@ -90,7 +90,7 @@ public class Levelup_system : MonoBehaviour
             sceneinfo.boxHeight += boxHeight;
             Vector3 scaleChange;
 
-            scaleChange = new Vector3(0.5f, 0.5f,0.5f);
+            scaleChange = new Vector3(0.2f, 0.2f,0.2f);
             meleeSize.transform.localScale += scaleChange;
             sceneinfo.scaleSize += scaleChange;
             Debug.Log("Im cute");

@@ -16,9 +16,8 @@ public class health : MonoBehaviour
     public inventoryForge items;
     public expBar expbar;
     public int currentLevel = 1;
-    private float cd = 30.0f;
     public sceneInfo sceneinfo;
-
+    public int shieldd;
     public float schieldCd = 30.0f;
     public bool inCooldown;
     // Start is called before the first frame update
@@ -45,31 +44,44 @@ public class health : MonoBehaviour
             if (items.shield_tier == 1)
             {
                 dmg -= 1;
+                inCooldown = true;
             } else if (items.shield_tier == 2)
             {
-                dmg -= 2;
+                dmg -= 1;
+                shieldd += 1;
+                if (shieldd >= 2) {
+                    shieldd = 0;
+                    inCooldown = true;
+                }
             } else if (items.shield_tier == 3)
             {
-                dmg -= 4;
-            }
-            inCooldown = true;
-        } else
-        {
-            sceneinfo.health -= dmg;
-            healthBar.SetHealth();
-            character_animation.SetTrigger("hurt");
-
-            if (sceneinfo.health <= 0)
-            {
-                Destroy(gameObject);
-                isDead = true;
-                gameOverScreen.enabled = true;
-                gameOver.gameIsOver = true;
-                gameOver.Hide();
+                dmg -= 1;
+                shieldd += 1;
+                if (shieldd >= 4)
+                {
+                    shieldd = 0;
+                    inCooldown = true;
+                }
             }
         }
-
+        
+        sceneinfo.health -= dmg;
+        healthBar.SetHealth();
+        if (shieldd <= 0)
+        {
+            character_animation.SetTrigger("hurt");
+        }
        
+        if (sceneinfo.health <= 0)
+        {
+            Destroy(gameObject);
+            isDead = true;
+            gameOverScreen.enabled = true;
+            gameOver.gameIsOver = true;
+            gameOver.Hide();
+        }
+
+
 
     }
 
